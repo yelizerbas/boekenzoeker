@@ -20,7 +20,7 @@
 
 * 🚧 werk in uitvoering.
 
-* 🙈 wen .gitignore-bestand toevoegen of bijwerken.
+* 🙈 een .gitignore-bestand toevoegen of bijwerken.
 
 * 📦️ gecompileerde bestanden of pakketten toevoegen of bijwerken.
 
