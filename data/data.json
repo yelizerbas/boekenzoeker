@@ -1,0 +1,15 @@
+
+{
+    "people": [
+        {
+            "name": "Ine",
+            "email": "ine@gmail.com",
+            "password": "test"
+        },
+        {
+            "name": "Pip",
+            "email": "pip@gmail.com",
+            "password": "test123"
+        }
+    ]
+}

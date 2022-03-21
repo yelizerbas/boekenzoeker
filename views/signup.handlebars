@@ -1,0 +1,22 @@
+{{>header}}
+<main id="signup">
+    <section>
+        <form action="/accountaangemaakt" method="POST" id="formsignup">
+            <fieldset>
+                <legend>Signup</legend>
+                <label for="name">Naam</label>
+                <input type="text" name="name" id="name">
+                <p class="messagename">Er is geen naam ingevuld.</p>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email">
+                <p class="messageemail">Er is geen geldig emailadres ingevuld.</p>
+                <label for="password">Wachtwoord</label>
+                <input type="password" name="password" id="password">
+                <label for="confirm_password">Herhaal wachtwoord</label>
+                <input type="password" name="confirm_password" id="confirm_password">
+                <p class="messagepassword">Het wachtwoord dat is ingevuld is niet hetzelfde.</p>
+                <input type="submit" value="Signup" id="singup">
+            </fieldset> 
+        </form>
+    </section>
+</main>
