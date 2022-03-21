@@ -6,21 +6,21 @@
 
 * 🐛 een bug repareren.
 
-* ✨ Introduceer nieuwe functies.
+* ✨ introduceer nieuwe functies.
 
 * 📝 documentatie toevoegen of bijwerken.
 
 * 💄 de gebruikersinterface en stijlbestanden toevoegen of bijwerken.
 
-* 🎉 Begin een project.
+* 🎉 begin een project.
 
 * ✅ code toevoegen of bijwerken.
 
 * 🚨 compiler / linter-waarschuwingen repareren.
 
-* 🚧 Werk in uitvoering.
+* 🚧 werk in uitvoering.
 
-* 🙈 Een .gitignore-bestand toevoegen of bijwerken.
+* 🙈 wen .gitignore-bestand toevoegen of bijwerken.
 
 * 📦️ gecompileerde bestanden of pakketten toevoegen of bijwerken.
 
