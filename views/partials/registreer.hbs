@@ -1,0 +1,44 @@
+<main >
+
+<form  action="/register" method="POST">  
+
+ 
+    <section >   
+            
+        <h1>Registreren</h1>
+
+        <form action="/login" method="post" enctype="multipart/form-data" >
+    
+        <section >
+
+            <label>Gebruikersnaam</label>
+            <input type="text" name="username"/>
+
+        </section>
+
+        <section >
+
+            <label>Wachtwoord</label>
+            <input type="password" name="password"/>
+
+        </section>
+        
+        <section >
+
+            <input  type="checkbox" id="terms" name="terms_conditions" checked required >
+		    <label for="terms">Ik ga akkoord met de <a href="#">algemene voorwaarden</a></label>
+
+		</section>
+        
+        <button type="submit" >Registreren</button>
+    
+        <p class > Al een account? <a href="/login">Inloggen.</a></p>
+
+    </section>   
+ </form> 
+ 
+
+</main>
+
+ 
+ 
