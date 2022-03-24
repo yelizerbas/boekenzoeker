@@ -1,0 +1,307 @@
+/* De variabelen die je in dit project kunt gebruiken */
+:root {
+    --bleu-gray: #EFF2F1;
+    --turquoise: #08BDBD;
+    --dark-blue: #327684;
+    --red: #F21B3F;
+    --black: #1A1A1A;
+    --white: #FFFFFF;
+    --title-font: dunbar-tall, sans-serif;
+    --base-font: cardea-lining, serif;
+}
+
+/* Algemene code voor heel het project */
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bleu-gray);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+body::before {
+    content: '';
+    background-image: url(../img/books-bg-desktop.png);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+h1 {
+    font-family: var(--title-font);
+    font-weight: 900;
+    font-size: 6em;
+    color: var(--turquoise);
+}
+
+h2, legend {
+    font-family: var(--title-font);
+    font-weight: 700;
+    font-size: 2.3em;
+    color: var(--turquoise);
+}
+
+p, label {
+    font-family: var(--base-font);
+    font-weight: 400;
+    color: var(--black);
+}
+
+a, input[type="submit"] {
+    background-color: var(--red);
+    width: 120px;
+    height: 45px;
+    border: none;
+    border-radius: 0.5em;
+    margin-right: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-family: var(--title-font);
+    font-weight: 600;
+    font-size: 1em;
+    color: var(--white);
+    text-decoration: none;
+    -webkit-transition: 250ms ease-in;
+    -o-transition: 250ms ease-in;
+    transition: 250ms ease-in;
+    cursor: pointer;
+}
+
+input[type="submit"]:focus {
+    border: none;
+}
+
+a:hover, input[type="submit"]:hover {
+    background-color: var(--dark-blue);
+}
+
+header, main {
+    max-width: calc(50% - 50px);
+    width: 100%;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+}
+
+header p {
+    display: block;
+    font-family: var(--title-font);
+    font-size: 1.2em;
+    font-weight: 900;
+    color: var(--red);
+}
+
+header p span {
+    font-weight: 600;
+    color: var(--dark-blue);
+}
+
+main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+main section {
+    width: 70%;
+}
+
+div, form {
+    background-color: var(--white);
+    box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+    max-width: 30em;
+    width: 100%;
+    padding: 3em 2.5em;
+    border-radius: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+div p {
+    margin-top: 1.5em;
+    font-size: 1em;
+}
+
+div a {
+    margin-top: 2em;
+}
+
+a:last-child {
+    background-color: transparent;
+    color: var(--red);
+    -webkit-transition: 250ms ease-in;
+    -o-transition: 250ms ease-in;
+    transition: 250ms ease-in;
+}
+
+a:last-child:hover {
+    color: var(--dark-blue);
+}
+
+fieldset {
+    width: 100%;
+    border: none;
+}
+
+label {
+    display: block;
+    font-size: 1em;
+}
+
+label:first-of-type {
+    margin-top: 20px;
+}
+
+input {
+    background-color: var(--bleu-gray);
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    display: block;
+}
+
+input:active, input:focus {
+    outline: 0;
+    border: 2px solid var(--turquoise);
+}
+
+input:first-of-type {
+    margin-bottom: 1em;
+}
+
+.error {
+    border: 2px solid var(--red);
+}
+
+.success {
+    border: 2px solid greenyellow;
+}
+
+input[type="submit"] {
+    margin: 2em 0 0 0;
+    float: right;
+}
+
+/* Specifiek voor de signup pagina */
+#signup fieldset:nth-child(2) {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+#signup fieldset:nth-child(2) legend {
+    font-family: var(--base-font);
+    font-weight: 400;
+    font-size: 1em;
+    color: var(--black);
+}
+
+#signup fieldset:nth-child(2) p {
+    position: relative;
+    width: calc(50% - 0.5em);
+    margin: 0 0 1em;
+}
+
+#signup fieldset:nth-child(2) label {
+    background-color: var(--bleu-gray);
+    height: 100%;
+    padding: 1em 1.3em;
+    border-radius: 10px;
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#signup fieldset:nth-child(2) label:first-of-type,
+#signup fieldset:nth-child(2) label:nth-last-of-type(2) {
+    margin-top: 5px;
+}
+
+#signup fieldset:nth-child(2) p input[type="checkbox"] {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#signup fieldset:nth-child(2) input[type="checkbox"]:checked {
+    background-color: var(--red);
+}
+
+#signup input:not([type="submit"]) {
+    margin-bottom: 1em;
+}
+
+form p{
+    display: flex;
+    align-items: center;
+   
+}
+
+form p a{
+    text-decoration: underline;
+    
+}

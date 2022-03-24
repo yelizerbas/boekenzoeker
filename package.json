@@ -1,34 +1,33 @@
 {
-  "name": "boekenzoeker",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Zoek een boek",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yelizerbas/boekenzoeker.git"
-  },
-  "keywords": [
-    "zoeken",
-    "boeken"
-  ],
-  "author": "boekenkast",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yelizerbas/boekenzoeker/issues"
-  },
-  "homepage": "https://github.com/yelizerbas/boekenzoeker#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "express-handlebars": "^6.0.3",
+    "express": "^4.17.2",
+    "express-flash": "^0.0.2",
+    "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
     "method-override": "^3.0.0",
     "mongodb": "^4.4.1",
-    "node": "^17.7.1",
-    "nodemon": "^2.0.15"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "q": "^1.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0"
   }
 }

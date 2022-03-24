@@ -1,5 +1,42 @@
+{{>header}}
 
-  {{> registreer}}
+<main id="signup">
+    <section>
+        <form action="/register" method="POST" id="local-reg">
+  
+
+ 
+     
+            
+        
+
+       
+    
+       <fieldset>
+                <legend>Registreren</legend>
+
+                 {{#if messages.error}}
+        {{messages.error}}
+        {{/if}}
+        
+                <label for="name">Gebruikersnaam</label>
+                <input type="text" name="username" id="name">
+                
+                
+                
+                <label for="password">Wachtwoord</label>
+                <input type="password" name="password" id="password">
+               
+                <input type="submit" value="Registreer" id="singup">
+
+
+                
+            </fieldset> 
+            <p > Al een account? <a href="/login">Inloggen.</a></p>
+
+ </form> 
+ 
+</main>
 
 
  

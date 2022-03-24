@@ -1,0 +1,26 @@
+main {
+    display: flex;
+}
+
+section {
+    max-width: calc(50% - 50px);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div { 
+    
+    form {
+        background-color: var(--white);
+        box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+        max-width: 30em;
+        width: 100%;
+        padding: 3em 2.5em;
+        border-radius: 20px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
