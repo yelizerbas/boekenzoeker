@@ -1,0 +1,29 @@
+{{>header}}
+
+<main id="login">
+    
+        <form action="/login" method="POST" >
+
+        
+            <fieldset>
+                <legend>Login</legend>
+
+                 {{#if messages.error}}
+        {{messages.error}}
+        {{/if}}
+
+                <label for="name">Gebruikersnaam</label>
+                <input type="text" name="username" id="name">
+                
+                <label for="password">Wachtwoord</label>
+                <input type="password" name="password" id="passwordlogin">
+                
+                <input type="submit" value="Login" id="login">
+
+               
+            </fieldset>
+
+             <p>Nog geen account? <a href="/register">Registreren</a></p>
+        </form>
+    
+</main>

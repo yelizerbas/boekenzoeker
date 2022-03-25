@@ -29,3 +29,13 @@ Met onze applicatie kun je boeken zoeken die jij leuk vindt. Het is natuurlijk e
 * 🚚 verplaatsen of hernoemen van bronnen.
 
 * 🍱 middelen toevoegen of bijwerken.
+
+# Instalatie 
+
+```
+$   git clone https://github.com/yelizerbas/boekenzoeker.git
+```
+
+# Start
+
+
