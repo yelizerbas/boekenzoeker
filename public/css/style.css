@@ -295,6 +295,11 @@ input[type="submit"] {
     margin-bottom: 1em;
 }
 
+.messagename, 
+.messagepassword {
+    display: none;
+}
+
 form p{
     display: flex;
     align-items: center;
