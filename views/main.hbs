@@ -1,10 +1,9 @@
+{{>header}}
+
 {{#if user}}
 
+<main class="profile">
 
-
-<main class = "grid">
-
-  
   <section>
       <img src="./img/oppas.png" alt="">
   </section>  
@@ -12,38 +11,38 @@
   <section class="container">
     
     <section>
-          <section>
-             <h1>Profiel Informatie</h1>
-             <h2>Welkom, {{user.username}}.</h2>
-             <p> Wil je uitloggen of wil je jouw account verwijderen? Maak een keuze hieronder.</p>
-          </section>
-      
-        <section class ="naastelkaar">
-          
-            <form action="/logout"  method='get'>
-           
-			      <button type="submit" >Uitloggen</button>
-          
-		        </form>
 
-
-            <form action="/"  method='POST'>
-      
-            <input class="hide" name="delete" type="'hidden" value="{{user.username}}" />
-            <button type="submit" >Verwijder Account</button>
-
-            </form>
-
-        </section>
+      <section>
+          <h2>Welkom, {{user.username}}</h2>
+          <p>Op deze pagina kun je uitloggen, je account aanpassen en verwijderen.</p>
       </section>
+      
+      <section class="naastelkaar">
+        <form action="/update" method="POST">
+          <fieldset>
+            <label for="username">Gebruikersnaam</label>
+            <input type="text" name="username" id="username" value="{{user.username}}">
+            <p class="messagename">Er is geen naam ingevuld.</p>
+            <label for="password">Wachtwoord</label>
+            <input type="password" name="password" id="password">
+            <p class="messagepassword">Er is geen wachtwoord ingevuld.</p>
+            <input type="submit" value="Opslaan" id="opslaan">
+          </fieldset>
+        </form>
+        <form action="/logout"  method='get'>
+          <button type="submit" >Uitloggen</button>
+        </form>
+        <form action="/"  method='POST'>
+          <input class="hide" name="delete" type="'hidden" value="{{user.username}}" />
+          <button type="submit" >Verwijder Account</button>
+        </form>
+      </section>
+
+    </section>
     
   </section>
- 
 
 </main>
-
-   
-  
 
 {{/if}}
 
