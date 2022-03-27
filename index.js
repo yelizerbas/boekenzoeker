@@ -12,7 +12,8 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const flash = require('express-flash');
-
+const bcrypt = require('bcryptjs'),
+    Q = require('q');
 
 const funct = require('./functions.js');
 
@@ -189,7 +190,36 @@ app.post('/login', passport.authenticate('local-signin', {
   })
 );
 
-
+// Account aanpassen
+app.post('/update', async (req, res) => {
+  await client.connect();
+  client.db('Accounts').collection('AllAccounts').findOneAndUpdate({ 
+    name:req.user.username 
+  }, { 
+    $set:req.body.username 
+  }, { 
+    new: true,
+    upsert: true 
+  }, (err, data) => {
+      if(err){
+          console.log(err);
+      }
+      else{
+          console.log('name updated');
+      }
+  });
+  // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
+  const hash = bcrypt.hashSync(req.body.password, 10);
+  client.db('Accounts').collection('AllAccounts').findOneAndUpdate({ password:req.user.password }, { password:hash }, { new: true }, (err, data) => {
+      if(err){
+          console.log(err);
+      }
+      else{
+          console.log('password updated');
+      }
+  });
+  res.redirect('/');
+});
 
 // Logt de gebruiker uit van de site.
 app.get('/logout', (req, res) => {
