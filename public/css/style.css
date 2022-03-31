@@ -63,7 +63,7 @@ p, label {
     color: var(--black);
 }
 
-a, input[type="submit"] {
+a, button, input[type="submit"] {
     background-color: var(--red);
     width: 120px;
     height: 45px;
@@ -139,7 +139,7 @@ main section {
     width: 70%;
 }
 
-div, form {
+div, form, section section section {
     background-color: var(--white);
     box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
     max-width: 30em;
@@ -309,4 +309,21 @@ form p{
 form p a{
     text-decoration: underline;
     
+}
+
+section section {
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.naastelkaar {
+    display: flex;
+}
+
+section section section form {
+    background-color: transparent;
+    box-shadow: none;
 }
