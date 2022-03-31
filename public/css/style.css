@@ -139,7 +139,7 @@ main section {
     width: 70%;
 }
 
-div, form {
+form {
     background-color: var(--white);
     box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
     max-width: 30em;
@@ -306,15 +306,31 @@ form p a{
     
 }
 
-footer nav ul{
+footer nav ul {
     display: flex;
     flex-direction: row;
     list-style: none;
     
 }
 
-footer nav{
+footer nav {
     background-color: #FFFFFF;
     padding: 2em;
     border-radius: 20px;
 }
+
+.naastelkaar{
+    display: flex;
+    flex-direction: row;
+}
+
+.hide{
+    display: none;
+}
+
+form.buttons {
+    background-color: transparent;
+    box-shadow: none;
+
+}
+
