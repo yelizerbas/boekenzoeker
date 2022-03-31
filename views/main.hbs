@@ -1,49 +1,31 @@
-{{#if user}}
+<main>
+    <h1>Filteren</h1>
+    <form id="filter" action="/formulier", method="POST">
+        <input type="radio" name="genre" value="Thriller" id="thriller" required>
+        <label for="thriller"> Thriller</label>
 
+        <input type="radio" name="genre" value="Mystery" id="mystery">
+        <label for="mystery"> Mystery</label>
 
-
-<main class = "grid">
-
-  
-  <section>
-      <img src="./img/oppas.png" alt="">
-  </section>  
-
-  <section class="container">
+        <input type="radio" name="genre" value="Young Adult" id="young-adult">
+        <label for="young-adult"> Young Adult</label>
     
-    <section>
-          <section>
-             <h1>Profiel Informatie</h1>
-             <h2>Welkom, {{user.username}}.</h2>
-             <p> Wil je uitloggen of wil je jouw account verwijderen? Maak een keuze hieronder.</p>
-          </section>
-      
-        <section class ="naastelkaar">
-          
-            <form action="/logout"  method='get'>
-           
-			      <button type="submit" >Uitloggen</button>
-          
-		        </form>
+        <input type="radio" name="genre" value="Romance" id="romance">
+        <label for="romance"> Romance</label>
 
+        <button type="submit"> Filter</button>
+    </form>
 
-            <form action="/"  method='POST'>
-      
-            <input class="hide" name="delete" type="'hidden" value="{{user.username}}" />
-            <button type="submit" >Verwijder Account</button>
+    {{#each boeken}}
+    <div>
+        <img src={{this.imgSrc}} alt="foto van boek"/>
+        <h2>{{this.titel}}, {{this.auteur}}</h2>
+        <p>{{this.genre}}</p>
+        <p>{{this.taal}}</p>
+    </div>
+    {{/each}}
 
-            </form>
+    <script src="js/script.js"></script>
+</body>
 
-        </section>
-      </section>
     
-  </section>
- 
-
-</main>
-
-   
-  
-
-{{/if}}
-
