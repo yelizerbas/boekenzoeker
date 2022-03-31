@@ -196,17 +196,17 @@ app.post('/update', async (req, res) => {
   client.db('Accounts').collection('AllAccounts').findOneAndUpdate({ 
     name:req.user.username 
   }, { 
-    $set:req.body.username 
-  }, { 
+    name:req.body.username 
+  }, {
     new: true,
     upsert: true 
   }, (err, data) => {
-      if(err){
-          console.log(err);
-      }
-      else{
-          console.log('name updated');
-      }
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log('name updated');
+    }
   });
   // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
   const hash = bcrypt.hashSync(req.body.password, 10);
