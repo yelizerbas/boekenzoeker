@@ -1,6 +1,3 @@
-const bcrypt = require('bcryptjs'),
-  Q = require('q');
-
 // Source: https://github.com/WebDevSimplified/Nodejs-Passport-Login
 const localStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
