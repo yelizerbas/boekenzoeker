@@ -3,7 +3,9 @@
 require('dotenv').config()
 
 const express = require('express');
-const { engine } = require('express-handlebars');
+const {
+  engine
+} = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -13,7 +15,9 @@ const LocalStrategy = require('passport-local');
 const flash = require('express-flash');
 const bcrypt = require('bcryptjs')
 const multer = require('multer');
-const {utilsDB}  = require('./utils/db')
+const {
+  utilsDB
+} = require('./utils/db')
 
 require('./functions.js')(passport);
 
@@ -23,7 +27,7 @@ const upload = multer();
 
 
 // MongoDB connectie informatie
- const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.weqjj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.weqjj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 // Schema word opgehaald uit het mapje models
 const User = require('./models/User');
@@ -31,23 +35,35 @@ const User = require('./models/User');
 const mongoose = require('mongoose');
 
 // Regelt connectie met database
-mongoose.connect(mongodbUrl, { useNewURLParser: true })
-.then(() => console.log('Database is geconnect'))
-.catch(err => console.log(err));
+mongoose.connect(mongodbUrl, {
+    useNewURLParser: true
+  })
+  .then(() => console.log('Database is geconnect'))
+  .catch(err => console.log(err));
 
 // EXPRESS
 // Express Configureren
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(upload.array()); 
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(upload.array());
 app.use(flash())
 app.use(methodOverride('_method'));
-app.use(session({secret: 'process.env.SESSION_SECRET', saveUninitialized: true, resave: true}));
+app.use(session({
+  secret: 'process.env.SESSION_SECRET',
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
-utilsDB(client).then(data => { console.log(data)})
+// utilsDB(client).then(data => {
+//   console.log(data)
+// })
 
 // Handlebars instellen
 app.engine('hbs', engine({
@@ -56,7 +72,7 @@ app.engine('hbs', engine({
   defaultLayout: 'index',
   partialsDir: `${__dirname}/views/partials`
 
-  }));
+}));
 
 app.set('view engine', 'hbs');
 
@@ -64,11 +80,13 @@ app.set('view engine', 'hbs');
 
 //Homepagina laten zien
 app.get('/account', (req, res) => {
-  if ( !req.isAuthenticated() ) {
+  if (!req.isAuthenticated()) {
     res.redirect('/login')
     return
   }
-  res.render('account', {user: req.user});
+  res.render('account', {
+    user: req.user
+  });
 });
 
 //Log-in pagina laten zien
@@ -95,20 +113,20 @@ app.get('/logout', (req, res) => {
 });
 
 //FILTEREN
-app.get("/", async(req, res) => {
+// app.get("/", async (req, res) => {
 
-  // Data uit de database wat in een array is gestopt wordt nu in de constante "boeken"gezet
-  const boeken = await utilsDB(client); 
-  // Ophalen boeken database
-  res.render("main", {
-    boeken: boeken
-  });
-});
+//   // Data uit de database wat in een array is gestopt wordt nu in de constante "boeken"gezet
+//   // const boeken = await utilsDB(client);
+//   // Ophalen boeken database
+//   res.render("main", {
+//     boeken: boeken
+//   });
+// });
 
 
-app.post("/formulier", async(req, res) => {
+app.post("/formulier", async (req, res) => {
 
-  const boeken = await utilsDB(client); 
+  const boeken = await utilsDB(client);
 
   console.log(req.body);
   // Filter boeken
@@ -124,7 +142,7 @@ app.post("/formulier", async(req, res) => {
 
 // PASSPORT
 // Passport sessie.
-passport.serializeUser( (user, done) => {
+passport.serializeUser((user, done) => {
   console.log("serializing " + user.username);
   done(null, user);
 });
@@ -138,11 +156,13 @@ passport.deserializeUser((obj, done) => {
 
 //Homepagina laten zien
 app.get('/', (req, res) => {
-  if ( !req.isAuthenticated() ) {
+  if (!req.isAuthenticated()) {
     res.redirect('/login')
     return
   }
-  res.render('main', {user: req.user});
+  res.render('main', {
+    user: req.user
+  });
 });
 
 //Log-in pagina laten zien
@@ -162,9 +182,11 @@ app.get('/register', (req, res) => {
 // Laat de gebruiker zijn/haar account verwijderen
 app.post("/", async (req, res) => {
 
-  await client.connect()
+  // await client.connect()
 
-  client.db('Accounts').collection('AllAccounts').deleteOne({ username: req.body.delete })
+  // client.db('Accounts').collection('AllAccounts').deleteOne({
+  //   username: req.body.delete
+  // })
 
 
   res.redirect('/login')
@@ -173,43 +195,49 @@ app.post("/", async (req, res) => {
 
 app.post('/register', async (req, res) => {
   try {
-      User.findOne({ username: req.body.username }).then((user) => {
-          if (user) {
-              // Wanneer er al een gebruiker is met dit emailadres
-              return res.status(400).json({ username: 'Er is al een gebruiker met deze gebruikersnaam.' });
-          } else {
-              // Genereer hash password
-              // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
-              const hash = bcrypt.hashSync(req.body.password, 10);
-              
+    User.findOne({
+      username: req.body.username
+    }).then((user) => {
+      if (user) {
+        // Wanneer er al een gebruiker is met dit emailadres
+        return res.status(400).json({
+          username: 'Er is al een gebruiker met deze gebruikersnaam.'
+        });
+      } else {
+        // Genereer hash password
+        // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
+        const hash = bcrypt.hashSync(req.body.password, 10);
 
-              // Wanneer er nog geen account is met dit emailadres dan wordt er een nieuw account aangemaakt
-              const newUser = new User({
-                  username: req.body.username,
-                  password: hash,
-                  
-              });
 
-              // console.log(newUser.name)
-              newUser.save();
-              // return res.status(200).json({newUser})
-              return res.redirect('/login');
-          }
-      });
+        // Wanneer er nog geen account is met dit emailadres dan wordt er een nieuw account aangemaakt
+        const newUser = new User({
+          username: req.body.username,
+          password: hash,
+
+        });
+
+        // console.log(newUser.name)
+        newUser.save();
+        // return res.status(200).json({newUser})
+        return res.redirect('/login');
+      }
+    });
   } catch (error) {
-      throw new Error(error);
+    throw new Error(error);
   }
 });
 
 // Login
-app.post('/login', (req, res, next)=> {
+app.post('/login', (req, res, next) => {
   let errors = [];
   passport.authenticate('local', {
-      failureFlash: true,
-      successRedirect: '/',
-      failureRedirect: `/login?email=${req.body.email}`, 
+    failureFlash: true,
+    successRedirect: '/',
+    failureRedirect: `/login?email=${req.body.email}`,
   })(req, res, next)
-  errors.push({msg: 'email not found'}) 
+  errors.push({
+    msg: 'email not found'
+  })
 });
 
 
@@ -222,8 +250,18 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
-  
+
+// like pagina
+
+app.get('/like', (req, res) => {
+  res.render('like');
+})
+
+app.get('/favorites', (req, res) => {
+  res.render('favorites');
+})
+
 //===============POORT=================
-const port = process.env.PORT || 3000; //kies je poortnummer
+const port = process.env.PORT || 8000; //kies je poortnummer
 app.listen(port);
 console.log("listening on " + port + "!");
