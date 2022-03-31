@@ -12,18 +12,35 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const flash = require('express-flash');
+const bcrypt = require('bcryptjs')
 
-
-const funct = require('./functions.js');
+require('./functions.js')(passport);
 
 const app = express();
 
+
+
 // MongoDB connectie informatie
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.weqjj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const client = new MongoClient(mongodbUrl, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+ const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.weqjj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+// const client = new MongoClient(mongodbUrl, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+// Schema word opgehaald uit het mapje models
+
+const User = require('./models/User');
+
+const mongoose = require('mongoose');
+
+
+
+// Regelt connectie met database
+
+mongoose.connect(mongodbUrl, { useNewURLParser: true })
+
+.then(() => console.log('Database is geconnect'))
+
+.catch(err => console.log(err));
 
 // PASSPORT
 
@@ -38,52 +55,6 @@ passport.deserializeUser((obj, done) => {
   done(null, obj);
 });
 
-
-// Gebruik de LocalStrategy in Passport om gebruikers in te loggen/ te registreren.
-passport.use('local-signin', new LocalStrategy(
-  {passReqToCallback : true}, //Request naar Callback
-  (req, username, password, done) => {
-    funct.localAuth(username, password)
-    .then( (user) => {
-      if (user) {
-        console.log("LOGGED IN AS: " + user.username);
-        req.session.success = 'Je bent succesvol ingelogd ' + user.username + '!';
-        done(null, user);
-      }
-      if (!user) {
-        console.log("COULD NOT LOG IN");
-        req.session.error = 'Kon gebruiker niet inloggen.'; //iGebruiker word geinformeerd dat hij/zij niet kan inloggen
-        return done(null, false, {message: 'Verkeerde gebruikersnaam of wachtwoord'})
-      }
-    })
-    .fail((err) => {
-      console.log(err.body);
-    });
-  }
-));
-
-// Gebruik de LocalStrategy in Passport om gebruikers in te loggen/ te registreren.
-passport.use('local-signup', new LocalStrategy(
-  {passReqToCallback : true}, //Request naar Callback
-  (req, username, password, done) => {
-    funct.localReg(username, password)
-    .then( (user) => {
-      if (user) {
-        console.log("REGISTERED: " + user.username);
-        req.session.success = 'Je bent succesvol geregistreerd en ingelogt. ' + user.username + '!';
-        done(null, user);
-      }
-      if (!user) {
-        console.log("COULD NOT REGISTER");
-        req.session.error = 'Gebruikersnaam al in gebruik kies een andere en probeer opnieuw'; //
-        return done(null, false, {message: 'Gebruikersnaam bestaat al'})
-      }
-    })
-    .fail( (err) => {
-      console.log(err.body);
-    });
-  }
-));
 
 // EXPRESS
 // Express Configureren
@@ -173,39 +144,59 @@ app.post("/", async (req, res) => {
 
 
 
-// Verzendt het verzoek via de lokale aanmeldingsstrategie, en als dit lukt, wordt de gebruiker naar de startpagina geleid, anders keert hij terug naar de aanmeldingspagina
-app.post('/register', passport.authenticate('local-signup', {
-  successRedirect: '/',
-  failureRedirect: '/register',
-  failureFlash: true
-  })
-);
 
-// Verzendt het verzoek via de lokale aanmeldingsstrategie, en als dit lukt, wordt de gebruiker naar de startpagina geleid, anders keert hij terug naar de aanmeldingspagina
-app.post('/login', passport.authenticate('local-signin', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-  })
-);
+
+app.post('/register', async (req, res) => {
+  try {
+      User.findOne({ username: req.body.username }).then((user) => {
+          if (user) {
+              // Wanneer er al een gebruiker is met dit emailadres
+              return res.status(400).json({ username: 'Er is al een gebruiker met deze gebruikersnaam.' });
+          } else {
+              // Genereer hash password
+              // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
+              const hash = bcrypt.hashSync(req.body.password, 10);
+              
+
+              // Wanneer er nog geen account is met dit emailadres dan wordt er een nieuw account aangemaakt
+              const newUser = new User({
+                  username: req.body.username,
+                  password: hash,
+                  
+              });
+
+              // console.log(newUser.name)
+              newUser.save();
+              // return res.status(200).json({newUser})
+              return res.redirect('/login');
+          }
+      });
+  } catch (error) {
+      throw new Error(error);
+  }
+});
+
+// Login
+app.post('/login', (req, res, next)=> {
+  let errors = [];
+  passport.authenticate('local', {
+      failureFlash: true,
+      successRedirect: '/',
+      failureRedirect: `/login?email=${req.body.email}`, 
+  })(req, res, next)
+  errors.push({msg: 'email not found'}) 
+});
 
 
 
 // Logt de gebruiker uit van de site.
 app.get('/logout', (req, res) => {
-  const name = req.user.username;
+  const name = req.body.username;
   console.log("Uitloggen " + req.user.username)
   req.logout();
   res.redirect('/');
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
-
-//error handling
-
-
-
-
-
 
 //===============POORT=================
 const port = process.env.PORT || 3000; //kies je poortnummer
