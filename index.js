@@ -1,5 +1,3 @@
-/* test */
-
 /* eslint-disable no-undef */
 
 require('dotenv').config()
@@ -198,6 +196,18 @@ app.post("/", async (req, res) => {
   res.redirect('/login')
 
 });
+
+// like pagina
+
+app.get('/like', (req, res) => {
+  res.render('like');
+})
+
+// dislike pagina
+
+app.get('/dislike', (req, res) => {
+  res.render('dislike');
+})
 
 
 
