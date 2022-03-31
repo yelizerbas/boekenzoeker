@@ -1,10 +1,11 @@
-
 /* eslint-disable no-undef */
 
 require('dotenv').config()
 
 const express = require('express');
-const { engine } = require('express-handlebars');
+const {
+  engine
+} = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -20,15 +21,22 @@ const app = express();
 
 // MongoDB connectie informatie
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const {
+  MongoClient,
+  ServerApiVersion
+} = require('mongodb');
 const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.weqjj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const client = new MongoClient(mongodbUrl, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const client = new MongoClient(mongodbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverApi: ServerApiVersion.v1
+});
 
 
 // PASSPORT
 
 // Passport sessie.
-passport.serializeUser( (user, done) => {
+passport.serializeUser((user, done) => {
   console.log("serializing " + user.username);
   done(null, user);
 });
@@ -40,80 +48,94 @@ passport.deserializeUser((obj, done) => {
 
 
 // Gebruik de LocalStrategy in Passport om gebruikers in te loggen/ te registreren.
-passport.use('local-signin', new LocalStrategy(
-  {passReqToCallback : true}, //Request naar Callback
+passport.use('local-signin', new LocalStrategy({
+    passReqToCallback: true
+  }, //Request naar Callback
   (req, username, password, done) => {
     funct.localAuth(username, password)
-    .then( (user) => {
-      if (user) {
-        console.log("LOGGED IN AS: " + user.username);
-        req.session.success = 'Je bent succesvol ingelogd ' + user.username + '!';
-        done(null, user);
-      }
-      if (!user) {
-        console.log("COULD NOT LOG IN");
-        req.session.error = 'Kon gebruiker niet inloggen.'; //iGebruiker word geinformeerd dat hij/zij niet kan inloggen
-        return done(null, false, {message: 'Verkeerde gebruikersnaam of wachtwoord'})
-      }
-    })
-    .fail((err) => {
-      console.log(err.body);
-    });
+      .then((user) => {
+        if (user) {
+          console.log("LOGGED IN AS: " + user.username);
+          req.session.success = 'Je bent succesvol ingelogd ' + user.username + '!';
+          done(null, user);
+        }
+        if (!user) {
+          console.log("COULD NOT LOG IN");
+          req.session.error = 'Kon gebruiker niet inloggen.'; //iGebruiker word geinformeerd dat hij/zij niet kan inloggen
+          return done(null, false, {
+            message: 'Verkeerde gebruikersnaam of wachtwoord'
+          })
+        }
+      })
+      .fail((err) => {
+        console.log(err.body);
+      });
   }
 ));
 
 // Gebruik de LocalStrategy in Passport om gebruikers in te loggen/ te registreren.
-passport.use('local-signup', new LocalStrategy(
-  {passReqToCallback : true}, //Request naar Callback
+passport.use('local-signup', new LocalStrategy({
+    passReqToCallback: true
+  }, //Request naar Callback
   (req, username, password, done) => {
     funct.localReg(username, password)
-    .then( (user) => {
-      if (user) {
-        console.log("REGISTERED: " + user.username);
-        req.session.success = 'Je bent succesvol geregistreerd en ingelogt. ' + user.username + '!';
-        done(null, user);
-      }
-      if (!user) {
-        console.log("COULD NOT REGISTER");
-        req.session.error = 'Gebruikersnaam al in gebruik kies een andere en probeer opnieuw'; //
-        return done(null, false, {message: 'Gebruikersnaam bestaat al'})
-      }
-    })
-    .fail( (err) => {
-      console.log(err.body);
-    });
+      .then((user) => {
+        if (user) {
+          console.log("REGISTERED: " + user.username);
+          req.session.success = 'Je bent succesvol geregistreerd en ingelogt. ' + user.username + '!';
+          done(null, user);
+        }
+        if (!user) {
+          console.log("COULD NOT REGISTER");
+          req.session.error = 'Gebruikersnaam al in gebruik kies een andere en probeer opnieuw'; //
+          return done(null, false, {
+            message: 'Gebruikersnaam bestaat al'
+          })
+        }
+      })
+      .fail((err) => {
+        console.log(err.body);
+      });
   }
 ));
 
 // EXPRESS
 // Express Configureren
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.static(__dirname + '/public'));
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
 app.use(flash())
 app.use(methodOverride('_method'));
-app.use(session({secret: 'process.env.SESSION_SECRET', saveUninitialized: true, resave: true}));
+app.use(session({
+  secret: 'process.env.SESSION_SECRET',
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 // // Session-persisted message middleware
-app.use( (req, res, next) => {
+app.use((req, res, next) => {
   const err = req.session.error,
-      msg = req.session.notice,
-      success = req.session.success;
+    msg = req.session.notice,
+    success = req.session.success;
 
-      delete req.session.error;
-      delete req.session.success;
-      delete req.session.notice;
+  delete req.session.error;
+  delete req.session.success;
+  delete req.session.notice;
 
-      if (err) res.locals.error = err;
-      if (msg) res.locals.notice = msg;
-      if (success) res.locals.success = success;
+  if (err) res.locals.error = err;
+  if (msg) res.locals.notice = msg;
+  if (success) res.locals.success = success;
 
-      next();
+  next();
 });
 
 app.use((req, res, next) => {
@@ -128,7 +150,7 @@ app.engine('hbs', engine({
   defaultLayout: 'index',
   partialsDir: `${__dirname}/views/partials`
 
-  }));
+}));
 
 app.set('view engine', 'hbs');
 
@@ -136,11 +158,13 @@ app.set('view engine', 'hbs');
 
 //Homepagina laten zien
 app.get('/', (req, res) => {
-  if ( !req.isAuthenticated() ) {
+  if (!req.isAuthenticated()) {
     res.redirect('/login')
     return
   }
-  res.render('main', {user: req.user});
+  res.render('main', {
+    user: req.user
+  });
 });
 
 //Log-in pagina laten zien
@@ -157,6 +181,16 @@ app.get('/register', (req, res) => {
   res.render('register');
 });
 
+// like pagina laten zien
+app.get('like', (req, res) => {
+  res.render('like');
+})
+
+//favorites/dislike pagina laten zien
+app.get('dislike', (req, res) => {
+  res.render('dislike');
+})
+
 // Laat de gebruiker zijn/haar account verwijderen
 app.post("/", async (req, res) => {
 
@@ -164,7 +198,9 @@ app.post("/", async (req, res) => {
 
 
 
-  client.db('Accounts').collection('AllAccounts').deleteOne({ username: req.body.delete })
+  client.db('Accounts').collection('AllAccounts').deleteOne({
+    username: req.body.delete
+  })
 
 
   res.redirect('/login')
@@ -178,16 +214,14 @@ app.post('/register', passport.authenticate('local-signup', {
   successRedirect: '/',
   failureRedirect: '/register',
   failureFlash: true
-  })
-);
+}));
 
 // Verzendt het verzoek via de lokale aanmeldingsstrategie, en als dit lukt, wordt de gebruiker naar de startpagina geleid, anders keert hij terug naar de aanmeldingspagina
 app.post('/login', passport.authenticate('local-signin', {
   successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: true
-  })
-);
+}));
 
 
 
