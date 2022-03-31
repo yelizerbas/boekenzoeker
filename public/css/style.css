@@ -305,3 +305,16 @@ form p a{
     text-decoration: underline;
     
 }
+
+footer nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    
+}
+
+footer nav{
+    background-color: #FFFFFF;
+    padding: 2em;
+    border-radius: 20px;
+}
