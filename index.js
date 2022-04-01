@@ -27,6 +27,7 @@ const upload = multer();
 
 // Schema word opgehaald uit het mapje models
 const User = require('./models/User');
+const Book = require('./models/Book');
 
 const mongoose = require('mongoose');
 
