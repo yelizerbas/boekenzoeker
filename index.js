@@ -24,6 +24,7 @@ const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PA
 
 // Schema word opgehaald uit het mapje models
 const User = require('./models/User');
+const Book = require('./models/Book');
 
 const mongoose = require('mongoose');
 
