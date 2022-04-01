@@ -16,12 +16,12 @@
         <button type="submit"> Filter</button>
     </form>
 
-    {{#each boeken}}
+    {{#each data}}
     <div>
         <img src={{this.imgSrc}} alt="foto van boek"/>
         <h2>{{this.titel}}, {{this.auteur}}</h2>
         <p>{{this.genre}}</p>
-        <p>{{this.taal}}</p>
+       
     </div>
     {{/each}}
 

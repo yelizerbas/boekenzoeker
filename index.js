@@ -24,6 +24,7 @@ const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PA
 
 // Schema word opgehaald uit het mapje models
 const User = require('./models/User');
+const books = require('./models/books');
 
 const mongoose = require('mongoose');
 
@@ -125,7 +126,7 @@ app.post('/login', (req, res, next) => {
   let errors = [];
   passport.authenticate('local', {
       failureFlash: true,
-      successRedirect: '/account',
+      successRedirect: '/',
       failureRedirect: `/login?email=${req.body.email}`, 
   })(req, res, next)
   errors.push({ msg: 'email not found' })
@@ -197,26 +198,25 @@ app.post("/", (req, res) => {
 //   });
 // });
 
-// app.get("/", async(req, res) => {
+app.get('/', async (req, res) => {
 
-//   // Data uit de database wat in een array is gestopt wordt nu in de constante "boeken"gezet
-//   const boeken = await utilsDB(client); 
-//   // Ophalen boeken database
-//   res.render("main", {
-//     boeken: boeken
-//   });
-// });
+  const boeken = await books.find().lean();
+
+  console.log(boeken)
+    res.render('main', {data: boeken});
+});
+
 
 //===============ROUTES===============
 
 // Homepagina laten zien
-app.get('/', (req, res) => {
-  if ( !req.isAuthenticated() ) {
-    res.redirect('/login')
-    return
-  }
-  res.render('main', {user: req.user});
-});
+// app.get('/', (req, res) => {
+//   if ( !req.isAuthenticated() ) {
+//     res.redirect('/login')
+//     return
+//   }
+//   res.render('main', {user: req.user});
+// });
 
 //Log-in pagina laten zien
 app.get('/login', (req, res) => {
