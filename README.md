@@ -41,13 +41,13 @@ Dit project maakt gebruik van een database bij MongoDB. Om je eigen database te 
 ```
 $   MONGO_URI=Hier de link naar je eigen database
 ```
+Vervolgens is hetr tijd om te gaan installeren, dit doe je door dit te typen in je terminal:
 
-Als dit allemaal is gelukt kun je het opstarten door het volgende te typen in je terminal:
 ```
-$   npm start
+$   npm install
 ```
-Nu kun je het project bekijken op jouw eigen localhost:3000. Dit typ je in in de browser. Let wel op, dit gaat elke keer als je de code wegdrukt weer uit, dus je moet dan opnieuw verbinding maken met:
 
+Als dit allemaal is gelukt kun je het opstarten door het volgende te typen in je terminal. Nu kun je het project bekijken op jouw eigen localhost:3000. Dit typ je in in de browser. Let wel op, dit gaat elke keer als je de code wegdrukt weer uit, dus je moet dan opnieuw verbinding maken met:
 ```
 $   npm start
 ```
@@ -84,5 +84,5 @@ De license die voor Bookbuddy word gebruikt is MIT. Meer informatie over de MIT 
 Dit project is gemaakt door:
 * [Ine](https://github.com/Inevdhoven)
 * [Romy](https://github.com/romyjkk)
-* [Yeliz](https://github.com/yelizerbas) en
+* [Yeliz](https://github.com/yelizerbas)
 * [Yousri](https://github.com/ybouz2)
