@@ -212,9 +212,12 @@ app.post('/update', async (req, res) => {
 });
 
 // Laat de gebruiker zijn/haar account verwijderen
-app.post("/", async (req, res) => {
-  User.deleteOne({
-    name: req.body.delete
+app.post("/", (req, res) => {
+  User.findOneAndDelete({
+    email: req.body.delete
+  }, (err) => {
+    if (err) console.log(err);
+    console.log("Successful deletion");
   });
   res.redirect('/login');
 });
@@ -269,17 +272,13 @@ app.get('/register', (req, res) => {
   res.render('register');
 });
 
-// Account laten zien
-// app.get('/account', (req, res) => {
-//   if ( !req.isAuthenticated() ) {
-//     res.redirect('/login')
-//     return
-//   }
-//   res.render('account', {user: req.user});
-// });
-
 // Account laten zien en data ophalen uit database
 app.get('/account', (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect('/login')
+    return
+  }
+
   res.render('account', {
     name: req.user.name,
     email: req.user.email,
