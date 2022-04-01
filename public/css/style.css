@@ -333,3 +333,49 @@ form.buttons {
     box-shadow: none;
 
 }
+
+/* like pagina -> moet op /formulier */
+
+/* main section.box {
+    width: 35em;
+    height: 28em;
+
+    background-color: white;
+    box-shadow: 0 0 40px rgb(26 26 26 / 12%);
+    border-radius: 20px;
+
+    padding: 2em;
+
+    display: flex;
+    flex-direction: row;
+}
+
+main section.box ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+main section.box ul:first-of-type {
+    width: 50%;
+}
+
+main section.box ul:first-of-type li img {
+    width: 100%;
+}
+
+main section.box ul:nth-of-type(2) {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+main section.box ul:nth-of-type(2) li {
+    padding: 0 0 .5em 1em;
+}
+
+main section.box ul:nth-of-type(2) li:nth-of-type(2) h3 {
+    font-family: var(--title-font);
+    font-weight: 100;
+    color: var(--red);
+} */
