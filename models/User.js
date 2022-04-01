@@ -24,27 +24,6 @@ const userSchema = new mongoose.Schema({
     } 
 })
 
+const User = mongoose.model('User', userSchema)
 
-const bookSchema = new mongoose.Schema({
-    title: {
-        type: String,
-    },
-    auteur: {
-        type: String,
-    },
-    genre: {
-        type: String,
-    },
-    img: {
-        data: Buffer,
-        contentType: String,
-    },
-});
-
-const User = mongoose.model('User', userSchema);
-const Book = mongoose.model('Book', bookSchema)
-
-module.exports = { 
-    User,
-    Book
-};
+module.exports = User;
