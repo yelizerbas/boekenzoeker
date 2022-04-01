@@ -2,36 +2,31 @@
     "imgSrc": "images/14-ways-to-die.jpeg",
     "titel": "14 ways to die",
     "auteur": "Vincent Ralph",
-    "genre": "Thriller",
-    "taal": "Engels"
+    "genre": "Thriller"
 },
 {
     "imgSrc": "images/win.jpeg",
     "titel": "Win",
     "auteur": "Harlan Coben",
-    "genre": "Thriller",
-    "taal": "Nederlands"
+    "genre": "Thriller"
 },
 {
     "imgSrc": "images/Verity.jpeg",
     "titel": "Verity",
     "auteur": "Colleen Hoover",
-    "genre": "Mystery",
-    "taal": "Engels"
+    "genre": "Mystery"
 },
 {
     "imgSrc": "images/The-Paris-Apartment.jpeg",
     "titel": "The Paris Apartment",
     "auteur": "Lucy Foley",
-    "genre": "Mystery",
-    "taal": "Engels"
+    "genre": "Mystery"
 },
 {
     "imgSrc": "images/13-minuten.jpeg",
     "titel": "13 minuten",
     "auteur": "Sara Pinborough",
-    "genre": "Mystery",
-    "taal": "Nederlands"
+    "genre": "Mystery"
 },
 {
     "imgSrc": "images/They-Both-Die-at-the-End.jpeg",
@@ -44,28 +39,24 @@
     "imgSrc": "images/One-of-Us-Is-Lying.jpeg",
     "titel": "One of Us Is Lying",
     "auteur": "Karen M. McManus",
-    "genre": "Young Adult",
-    "taal": "Engels"
+    "genre": "Young Adult"
 },
 {
     "imgSrc": "images/all-the-bright-places.jpeg",
     "titel": "All the Bright Places",
     "auteur": "Jennifer Niven",
-    "genre": "Young Adult",
-    "taal": "Engels"
+    "genre": "Young Adult"
 },
 {
     "imgSrc": "images/People-we-meet-on-vacation.jpeg",
     "titel": "People we meet on vacation",
     "auteur": "Emily Henry",
-    "genre": "Romance",
-    "taal": "Engels"
+    "genre": "Romance"
 },
 {
     "imgSrc": "images/Good-Girl-Complex.jpeg",
     "titel": "Good Girl Complex",
     "auteur": "Elle Kennedy",
-    "genre": "Romance",
-    "taal": "Engels"
+    "genre": "Romance"
 }
 ]
