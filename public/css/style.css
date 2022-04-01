@@ -63,7 +63,7 @@ p, label {
     color: var(--black);
 }
 
-a, input[type="submit"] {
+a, button, input[type="submit"] {
     background-color: var(--red);
     width: 120px;
     height: 45px;
@@ -139,7 +139,7 @@ main section {
     width: 70%;
 }
 
-div, form {
+div, form, section section section {
     background-color: var(--white);
     box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
     max-width: 30em;
@@ -295,6 +295,11 @@ input[type="submit"] {
     margin-bottom: 1em;
 }
 
+.messagename, 
+.messagepassword {
+    display: none;
+}
+
 form p{
     display: flex;
     align-items: center;
@@ -304,4 +309,49 @@ form p{
 form p a{
     text-decoration: underline;
     
+}
+
+section section {
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.naastelkaar {
+    display: flex;
+}
+
+section section section form {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+footer nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    
+}
+
+footer nav {
+    background-color: #FFFFFF;
+    padding: 2em;
+    border-radius: 20px;
+}
+
+.naastelkaar{
+    display: flex;
+    flex-direction: row;
+}
+
+.hide{
+    display: none;
+}
+
+form.buttons {
+    background-color: transparent;
+    box-shadow: none;
+
 }
