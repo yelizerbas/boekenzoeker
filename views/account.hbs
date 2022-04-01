@@ -1,15 +1,15 @@
 {{>header}}
 
-<main class = "grid">
+<main class="grid">
 
   <section class="container">
-    
+
     <section>
       <section>
         <h2>Welkom, {{user.username}}</h2>
         <p>Hier kun je je account aanpassen en verwijderen, daarnaast kun je ook uitloggen.</p>
       </section>
-    
+
       <form action="/update" method="POST" id="formaccount">
         <fieldset>
           <legend>Het account van {{user.name}}</legend>
@@ -25,28 +25,25 @@
           <input type="password" name="confirm_password" id="confirm_password">
           <p class="messagepassword">Het wachtwoord dat is ingevuld is niet hetzelfde.</p>
           <input type="submit" value="Opslaan" id="opslaan">
-        </fieldset> 
+        </fieldset>
       </form>
-    
-      <section class ="naastelkaar">
-        
-        <form action="/logout"  method='get'>
-          <button type="submit" >Uitloggen</button>
+
+      <section class="naastelkaar">
+
+        <form action="/logout" method='get'>
+          <button type="submit">Uitloggen</button>
         </form>
 
-        <form action="/"  method='POST'>
+        <form action="/" method='POST'>
           <input class="hide" name="delete" type="'hidden" value="{{user.username}}" />
-          <button type="submit" >Verwijder Account</button>
+          <button type="submit">Verwijder Account</button>
         </form>
 
       </section>
     </section>
-    
+
   </section>
- 
+
 </main>
 
-{{>footer}}    
-  
-
-{{/if}}
+{{>footer}}
