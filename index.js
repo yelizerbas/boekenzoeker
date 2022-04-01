@@ -27,83 +27,13 @@ const upload = multer();
 
 
 // MongoDB connectie informatie
+const mongodbUrl = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.weqjj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 // Schema word opgehaald uit het mapje models
 const User = require('./models/User');
 
 const mongoose = require('mongoose');
 
-// PASSPORT
-
-// Passport sessie.
-passport.serializeUser((user, done) => {
-  console.log("serializing " + user.username);
-  done(null, user);
-});
-
-passport.deserializeUser((obj, done) => {
-  console.log("deserializing " + obj);
-  done(null, obj);
-});
-
-
-// Gebruik de LocalStrategy in Passport om gebruikers in te loggen/ te registreren.
-passport.use('local-signin', new LocalStrategy({
-    passReqToCallback: true
-  }, //Request naar Callback
-  (req, username, password, done) => {
-    funct.localAuth(username, password)
-      .then((user) => {
-        if (user) {
-          console.log("LOGGED IN AS: " + user.username);
-          req.session.success = 'Je bent succesvol ingelogd ' + user.username + '!';
-          done(null, user);
-        }
-        if (!user) {
-          console.log("COULD NOT LOG IN");
-          req.session.error = 'Kon gebruiker niet inloggen.'; //iGebruiker word geinformeerd dat hij/zij niet kan inloggen
-          return done(null, false, {
-            message: 'Verkeerde gebruikersnaam of wachtwoord'
-          })
-        }
-      })
-      .fail((err) => {
-        console.log(err.body);
-      });
-  }
-));
-
-// Gebruik de LocalStrategy in Passport om gebruikers in te loggen/ te registreren.
-passport.use('local-signup', new LocalStrategy({
-    passReqToCallback: true
-  }, //Request naar Callback
-  (req, username, password, done) => {
-    funct.localReg(username, password)
-      .then((user) => {
-        if (user) {
-          console.log("REGISTERED: " + user.username);
-          req.session.success = 'Je bent succesvol geregistreerd en ingelogt. ' + user.username + '!';
-          done(null, user);
-        }
-        if (!user) {
-          console.log("COULD NOT REGISTER");
-          req.session.error = 'Gebruikersnaam al in gebruik kies een andere en probeer opnieuw'; //
-          return done(null, false, {
-            message: 'Gebruikersnaam bestaat al'
-          })
-        }
-      })
-      .fail((err) => {
-        console.log(err.body);
-      });
-  }
-));
-
-// EXPRESS
-// Express Configureren
-app.use(express.urlencoded({
-  extended: false
-}));
 // Regelt connectie met database
 mongoose.connect(mongodbUrl, {
     useNewURLParser: true
@@ -116,19 +46,12 @@ mongoose.connect(mongodbUrl, {
 app.use(express.urlencoded({
   extended: true
 }));
-
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(upload.array());
-
 app.use(flash())
 app.use(methodOverride('_method'));
 app.use(session({
@@ -138,32 +61,9 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// // Session-persisted message middleware
-app.use((req, res, next) => {
-  const err = req.session.error,
-    msg = req.session.notice,
-    success = req.session.success;
-
-  delete req.session.error;
-  delete req.session.success;
-  delete req.session.notice;
-
-  if (err) res.locals.error = err;
-  if (msg) res.locals.notice = msg;
-  if (success) res.locals.success = success;
-
-  next();
-});
-
-app.use((req, res, next) => {
-  app.locals.success = req.flash('success')
-  next();
-});
-
-utilsDB(client).then(data => {
-  console.log(data)
-})
+// utilsDB(client).then(data => {
+//   console.log(data)
+// })
 
 // Handlebars instellen
 app.engine('hbs', engine({
@@ -213,15 +113,15 @@ app.get('/logout', (req, res) => {
 });
 
 //FILTEREN
-app.get("/", async (req, res) => {
+// app.get("/", async (req, res) => {
 
-  // Data uit de database wat in een array is gestopt wordt nu in de constante "boeken"gezet
-  const boeken = await utilsDB(client);
-  // Ophalen boeken database
-  res.render("main", {
-    boeken: boeken
-  });
-});
+//   // Data uit de database wat in een array is gestopt wordt nu in de constante "boeken"gezet
+//   // const boeken = await utilsDB(client);
+//   // Ophalen boeken database
+//   res.render("main", {
+//     boeken: boeken
+//   });
+// });
 
 
 app.post("/formulier", async (req, res) => {
@@ -292,14 +192,12 @@ app.get('dislike', (req, res) => {
 // Laat de gebruiker zijn/haar account verwijderen
 app.post("/", async (req, res) => {
 
-  await client.connect()
+  // await client.connect()
 
-  client.db('Accounts').collection('AllAccounts').deleteOne({
-    username: req.body.delete
-  })
-  client.db('Accounts').collection('AllAccounts').deleteOne({
-    username: req.body.delete
-  })
+  // client.db('Accounts').collection('AllAccounts').deleteOne({
+  //   username: req.body.delete
+  // })
+
 
   res.redirect('/login')
 
@@ -328,19 +226,6 @@ app.post('/register', async (req, res) => {
 
         });
 
-        // Verzendt het verzoek via de lokale aanmeldingsstrategie, en als dit lukt, wordt de gebruiker naar de startpagina geleid, anders keert hij terug naar de aanmeldingspagina
-        app.post('/register', passport.authenticate('local-signup', {
-          successRedirect: '/',
-          failureRedirect: '/register',
-          failureFlash: true
-        }));
-
-        // Verzendt het verzoek via de lokale aanmeldingsstrategie, en als dit lukt, wordt de gebruiker naar de startpagina geleid, anders keert hij terug naar de aanmeldingspagina
-        app.post('/login', passport.authenticate('local-signin', {
-          successRedirect: '/',
-          failureRedirect: '/login',
-          failureFlash: true
-        }));
         // console.log(newUser.name)
         newUser.save();
         // return res.status(200).json({newUser})
@@ -374,7 +259,17 @@ app.get('/logout', (req, res) => {
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
 
+// like pagina
+
+app.get('/like', (req, res) => {
+  res.render('like');
+})
+
+app.get('/favorites', (req, res) => {
+  res.render('favorites');
+})
+
 //===============POORT=================
-const port = process.env.PORT || 3000; //kies je poortnummer
+const port = process.env.PORT || 8000; //kies je poortnummer
 app.listen(port);
 console.log("listening on " + port + "!");
