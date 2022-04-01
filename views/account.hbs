@@ -5,19 +5,14 @@
   <section class="container">
     
     <section>
-      <section>
-        <h2>Welkom, {{user.username}}</h2>
-        <p>Hier kun je je account aanpassen en verwijderen, daarnaast kun je ook uitloggen.</p>
-      </section>
-    
       <form action="/update" method="POST" id="formaccount">
         <fieldset>
-          <legend>Het account van {{user.name}}</legend>
+          <legend>Het account van {{name}}</legend>
           <label for="name">Naam</label>
-          <input type="text" name="name" id="name" value="{{user.name}}">
+          <input type="text" name="name" id="name" value="{{name}}">
           <p class="messagename">Er is geen naam ingevuld.</p>
           <label for="email">E-mail</label>
-          <input type="email" name="email" id="email" value="{{user.email}}">
+          <input type="email" name="email" id="email" value="{{email}}">
           <p class="messageemail">Er is geen geldig emailadres ingevuld.</p>
           <label for="password">Wachtwoord</label>
           <input type="password" name="password" id="password">
@@ -47,6 +42,3 @@
 </main>
 
 {{>footer}}    
-  
-
-{{/if}}
