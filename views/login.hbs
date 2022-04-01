@@ -1,4 +1,4 @@
-{{>header}}
+{{!-- {{>header}}
 
 <main id="login">
     
@@ -26,4 +26,26 @@
              <p>Nog geen account? <a href="/register">Registreren</a></p>
         </form>
     
+</main> --}}
+
+{{>header}}
+<main id="login">
+    <section>
+        <form action="/login" method="POST" id="formlogin">
+            <fieldset>
+                <legend>Login</legend>
+                {{#if messages.error}}
+                    <p class="message">{{messages.error}}</p>
+                {{/if}}
+                <label for="email">E-mail</label>
+                <input type="email" name="email" required id="email">
+                <p class="messageemail">Er is geen geldig emailadres ingevuld.</p>
+                <label for="password">Wachtwoord</label>
+                <input type="password" name="password" id="password">
+                <p class="messagepassword">Het wachtwoord dat is ingevuld is niet goed.</p>
+                <input type="submit" value="Login" id="login">
+            </fieldset>
+            <p>Nog geen account? <a href="/register">Registreren</a></p>
+        </form>
+    </section>
 </main>
