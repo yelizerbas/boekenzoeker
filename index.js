@@ -53,8 +53,8 @@ app.use(flash())
 app.use(methodOverride('_method'));
 app.use(session({
   secret: 'process.env.SESSION_SECRET',
-  saveUninitialized: true,
-  resave: true
+  saveUninitialized: false,
+  resave: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -181,6 +181,7 @@ app.post('/update', async (req, res) => {
   });
   // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
   const hash = bcrypt.hashSync(req.body.password, 10);
+  const verified = bcrypt.compareSync(req.body.confirm_password, hash);
   User.findOneAndUpdate({
     password: req.user.password
   }, {
@@ -213,7 +214,7 @@ app.post('/update', async (req, res) => {
 // Laat de gebruiker zijn/haar account verwijderen
 app.post("/", async (req, res) => {
   User.deleteOne({
-    username: req.body.delete
+    name: req.body.delete
   });
   res.redirect('/login');
 });
@@ -247,7 +248,7 @@ app.post("/", async (req, res) => {
 
 //===============ROUTES===============
 
-//Homepagina laten zien
+// Homepagina laten zien
 app.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
     res.redirect('/login')
@@ -278,9 +279,9 @@ app.get('/register', (req, res) => {
 // });
 
 // Account laten zien en data ophalen uit database
-app.get('/account', async (req, res) => {
+app.get('/account', (req, res) => {
   res.render('account', {
-    name: req.user.username,
+    name: req.user.name,
     email: req.user.email,
     title: 'Account - BookBuddy'
   });
@@ -288,8 +289,8 @@ app.get('/account', async (req, res) => {
 
 // Logt de gebruiker uit van de site.
 app.get('/logout', (req, res) => {
-  const name = req.body.username;
-  console.log("Uitloggen " + req.user.username)
+  const name = req.body.email;
+  console.log("Uitloggen " + req.user.email)
   req.logout();
   res.redirect('/');
   req.session.notice = "Succesvol uitgelogd " + name + "!";
@@ -307,13 +308,13 @@ app.get('/favorites', (req, res) => {
 // PASSPORT
 // Passport sessie.
 passport.serializeUser((user, done) => {
-  console.log("serializing " + user.username);
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser((obj, done) => {
-  console.log("deserializing " + obj);
-  done(null, obj);
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  })
 });
 
 //===============POORT=================
