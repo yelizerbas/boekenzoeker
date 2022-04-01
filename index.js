@@ -12,7 +12,7 @@ const LocalStrategy = require('passport-local');
 const flash = require('express-flash');
 const bcrypt = require('bcryptjs')
 const multer = require('multer');
-const {utilsDB}  = require('./utils/db')
+const { utilsDB } = require('./utils/db')
 
 require('./functions.js')(passport);
 
@@ -29,19 +29,19 @@ const mongoose = require('mongoose');
 
 // Regelt connectie met database
 mongoose.connect(mongodbUrl, { useNewURLParser: true })
-.then(() => console.log('Database is geconnect'))
-.catch(err => console.log(err));
+  .then(() => console.log('Database is geconnect'))
+  .catch(err => console.log(err));
 
 // EXPRESS
 // Express Configureren
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(upload.array()); 
+app.use(upload.array());
 app.use(flash())
 app.use(methodOverride('_method'));
-app.use(session({secret: 'process.env.SESSION_SECRET', saveUninitialized: true, resave: true}));
+app.use(session({ secret: 'process.env.SESSION_SECRET', saveUninitialized: true, resave: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 // utilsDB(client).then(data => { console.log(data)})
@@ -116,19 +116,19 @@ app.post('/register', async (req, res) => {
           }
       });
   } catch (error) {
-      throw new Error(error);
+    throw new Error(error);
   }
 });
 
 // Login
-app.post('/login', (req, res, next)=> {
+app.post('/login', (req, res, next) => {
   let errors = [];
   passport.authenticate('local', {
       failureFlash: true,
       successRedirect: '/account',
       failureRedirect: `/login?email=${req.body.email}`, 
   })(req, res, next)
-  errors.push({msg: 'email not found'}) 
+  errors.push({ msg: 'email not found' })
 });
 
 // Account aanpassen
@@ -250,6 +250,15 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
+    
+// like pagina
+app.get('/like', (req, res) => {
+  res.render('like');
+})
+
+app.get('/favorites', (req, res) => {
+  res.render('favorites');
+})
   
 // PASSPORT
 // Passport sessie.

@@ -327,3 +327,31 @@ section section section form {
     background-color: transparent;
     box-shadow: none;
 }
+
+footer nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    
+}
+
+footer nav {
+    background-color: #FFFFFF;
+    padding: 2em;
+    border-radius: 20px;
+}
+
+.naastelkaar{
+    display: flex;
+    flex-direction: row;
+}
+
+.hide{
+    display: none;
+}
+
+form.buttons {
+    background-color: transparent;
+    box-shadow: none;
+
+}
