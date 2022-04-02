@@ -42,7 +42,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 app.use(flash())
 app.use(methodOverride('_method'));
-app.use(session({ secret: 'process.env.SESSION_SECRET', saveUninitialized: false, resave: false }));
+app.use(session({ 
+  secret: 'process.env.SESSION_SECRET', 
+  saveUninitialized: false, 
+  resave: false,
+  // cookie: {
+  //   expires: 600000
+  // } 
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 // utilsDB(client).then(data => { console.log(data)})
@@ -61,7 +68,7 @@ app.set('view engine', 'hbs');
 //===============ROUTES===============
 // Signup
 // Source https://soufiane-oucherrou.medium.com/user-registration-with-mongoose-models-81f80d9933b0
-app.post('/register', async (req, res) => {
+app.post('/register', async (req, res, done) => {
   try {
       User.findOne({ email: req.body.email }).then((user) => {
           if (user) {
