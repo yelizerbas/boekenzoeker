@@ -32,7 +32,7 @@ body {
 
 body::before {
     content: '';
-    background-image: url(../img/books-bg-desktop.png);
+    background-image: url(../images/books-bg-desktop.png);
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -354,4 +354,8 @@ form.buttons {
     background-color: transparent;
     box-shadow: none;
 
+}
+
+div img{
+    width: 200px;
 }
