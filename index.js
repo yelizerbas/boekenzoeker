@@ -295,7 +295,7 @@ app.get('/logout', (req, res) => {
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
 
-// like pagina + boeken uit de database halen
+// like pagina + boeken uit de database halen, 1 tegelijk laten zien
 app.get('/like', async (req, res) => {
 
   const boeken = await books.find().lean();
