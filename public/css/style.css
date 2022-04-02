@@ -296,8 +296,19 @@ input[type="submit"] {
 }
 
 .messagename, 
+.messageemail,
 .messagepassword {
     display: none;
+}
+
+.errormessage {
+    margin-bottom: 10px;
+    display: block;
+    color: var(--red);
+}
+
+#formlogin .errormessage {
+    margin-top: 16px;
 }
 
 form p{
