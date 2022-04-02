@@ -295,9 +295,15 @@ app.get('/logout', (req, res) => {
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
 
-// like pagina
-app.get('/like', (req, res) => {
-  res.render('like');
+// like pagina + boeken uit de database halen
+app.get('/like', async (req, res) => {
+
+  const boeken = await books.find().lean();
+
+  console.log(boeken)
+  res.render('like', {
+    data: boeken
+  });
 })
 
 app.get('/favorites', (req, res) => {

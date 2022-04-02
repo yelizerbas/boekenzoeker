@@ -359,3 +359,34 @@ form.buttons {
 div img{
     width: 200px;
 }
+
+.like {
+    display: flex;
+    flex-direction: column;
+}
+
+.like ul {
+    display: flex;
+    gap: 1em;
+
+    list-style-type: none;
+}
+
+.like ul li {
+    background-color: white;
+    box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+    width: 5em;
+    height: 5em;
+}
+
+.like ul li input {
+    padding: 2em;
+    background-color: white;
+
+    font-family: var(--title-font);
+    font-weight: 100;
+    color: var(--red);
+    text-align: center;
+
+    border-radius: 0;
+}

@@ -1,2 +1,22 @@
-{{> header}}
-{{> footer}}
+<body class="like">
+
+    {{#each data}}
+    <div>
+        <img src={{this.imgSrc}} alt="foto van boek" />
+        <h2>{{this.titel}}, {{this.auteur}}</h2>
+        <p>{{this.genre}}</p>
+
+        <ul>
+            <li><input type="button" value="Yes!"></li>
+            <li><input type="button" value="No.."></li>
+        </ul>
+
+    </div>
+    {{/each}}
+
+
+    <script src="js/script.js"></script>
+
+    {{> footer}}
+
+</body>
