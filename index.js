@@ -181,29 +181,28 @@ app.post("/", (req, res) => {
   res.redirect('/login');
 });
 
-//FILTEREN
-// app.post("/formulier", async(req, res) => {
-
-//   const boeken = await utilsDB(client); 
-
-//   console.log(req.body);
-//   // Filter boeken
-//   const filteredBoeken = boeken.filter((boeken) => {
-//     // Stop het item alleen in de array wanneer onderstaande regel 'true' is, dus als de doelen overeen komen met de radiobutton
-//     return boeken.genre == req.body.genre;
-//   });
-//   //render zelfde pagina, maar met de gefilterde boeken
-//   res.render("main", {
-//     boeken: filteredBoeken
-//   });
-// });
-
+// FILTEREN
 app.get('/', async (req, res) => {
 
   const boeken = await books.find().lean();
 
   console.log(boeken)
     res.render('main', {data: boeken});
+});
+
+app.post("/formulier", async(req, res) => {
+
+  const boeken = await books.find().lean(); 
+
+  console.log(req.body);
+  // Filter boeken
+  const filteredBoeken = boeken.filter((boeken) => {
+    // Stop het item alleen in de array wanneer onderstaande regel 'true' is, dus als de doelen overeen komen met de radiobutton
+    return boeken.genre == req.body.genre;
+  });
+  console.log(filteredBoeken);
+  //render zelfde pagina, maar met de gefilterde boeken
+  res.render('main', { data: filteredBoeken});
 });
 
 
