@@ -6,10 +6,13 @@
         <h2>{{this.titel}}, {{this.auteur}}</h2>
         <p>{{this.genre}}</p>
 
-        <ul class="card">
-            <li><input class="yes" type="button" value="Yes!"></li>
-            <li><input class="no" type="button" value="No.."></li>
-        </ul>
+        <form id="yes" action="/like" , method="POST">
+            <input type="button" value="Yes!">
+        </form>
+
+        <form id="no" action="/dislike" , method="POST">
+            <input type="button" value="No.."></li>
+        </form>
 
     </div>
     {{/each}}

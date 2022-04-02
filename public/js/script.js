@@ -234,7 +234,7 @@ const card = document.querySelector('.card')
 
 like.addEventListener('submit', (event) => {
     event.preventDefault();
-    card.classList.add('cardLike')
+    card.classList.add('.cardLike')
 
     card.addEventListener('animationend', () => {
         cardLike.submit();

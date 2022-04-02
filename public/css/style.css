@@ -408,7 +408,7 @@ div img {
 
 @keyframes like {
     to {
-        transform: translateX(100em);
+        transform: rotate(20deg) translateX(30em) translateY(-20em);
     }
 }
 
