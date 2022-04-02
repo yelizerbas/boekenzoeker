@@ -11,7 +11,9 @@
 }
 
 /* Algemene code voor heel het project */
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -50,20 +52,24 @@ h1 {
     color: var(--turquoise);
 }
 
-h2, legend {
+h2,
+legend {
     font-family: var(--title-font);
     font-weight: 700;
     font-size: 2.3em;
     color: var(--turquoise);
 }
 
-p, label {
+p,
+label {
     font-family: var(--base-font);
     font-weight: 400;
     color: var(--black);
 }
 
-a, button, input[type="submit"] {
+a,
+button,
+input[type="submit"] {
     background-color: var(--red);
     width: 120px;
     height: 45px;
@@ -94,11 +100,13 @@ input[type="submit"]:focus {
     border: none;
 }
 
-a:hover, input[type="submit"]:hover {
+a:hover,
+input[type="submit"]:hover {
     background-color: var(--dark-blue);
 }
 
-header, main {
+header,
+main {
     max-width: calc(50% - 50px);
     width: 100%;
     height: 100vh;
@@ -139,7 +147,9 @@ main section {
     width: 70%;
 }
 
-div, form, section section section {
+div,
+form,
+section section section {
     background-color: var(--white);
     box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
     max-width: 30em;
@@ -199,7 +209,8 @@ input {
     display: block;
 }
 
-input:active, input:focus {
+input:active,
+input:focus {
     outline: 0;
     border: 2px solid var(--turquoise);
 }
@@ -295,20 +306,20 @@ input[type="submit"] {
     margin-bottom: 1em;
 }
 
-.messagename, 
+.messagename,
 .messagepassword {
     display: none;
 }
 
-form p{
+form p {
     display: flex;
     align-items: center;
-   
+
 }
 
-form p a{
+form p a {
     text-decoration: underline;
-    
+
 }
 
 section section {
@@ -332,7 +343,7 @@ footer nav ul {
     display: flex;
     flex-direction: row;
     list-style: none;
-    
+
 }
 
 footer nav {
@@ -341,12 +352,12 @@ footer nav {
     border-radius: 20px;
 }
 
-.naastelkaar{
+.naastelkaar {
     display: flex;
     flex-direction: row;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
@@ -356,7 +367,7 @@ form.buttons {
 
 }
 
-div img{
+div img {
     width: 200px;
 }
 
@@ -389,4 +400,24 @@ div img{
     text-align: center;
 
     border-radius: 0;
+}
+
+.cardLike {
+    animation: like 2s;
+}
+
+@keyframes like {
+    to {
+        transform: translateX(100em);
+    }
+}
+
+.cardDislike {
+    animation: dislike 1s;
+}
+
+@keyframes dislike {
+    to {
+        transform: translateX(-100em);
+    }
 }

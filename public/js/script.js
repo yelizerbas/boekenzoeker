@@ -225,3 +225,26 @@ if (formAccount) {
         }
     });
 }
+
+// swipe
+
+const like = document.querySelector('.yes')
+const dislike = document.querySelector('.no')
+const card = document.querySelector('.card')
+
+like.addEventListener('submit', (event) => {
+    event.preventDefault();
+    card.classList.add('cardLike')
+
+    card.addEventListener('animationend', () => {
+        cardLike.submit();
+    });
+});
+
+dislike.addEventListener('submit', (event) => {
+    card.classList.add('cardDislike')
+
+    card.addEventListener('animationend', () => {
+        cardDislike.submit();
+    });
+});
