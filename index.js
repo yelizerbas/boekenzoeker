@@ -89,6 +89,17 @@ app.set('view engine', 'hbs');
 // });
 
 // Signup
+const nodemailer = require('nodemailer');
+require('dotenv').config()
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'y.erbas023@gmail.com',
+    pass: 'Youtube12'
+  }
+});
+
 // Source https://soufiane-oucherrou.medium.com/user-registration-with-mongoose-models-81f80d9933b0
 app.post('/register', async (req, res) => {
   try {
@@ -112,6 +123,21 @@ app.post('/register', async (req, res) => {
 
               // console.log(newUser.name)
               newUser.save();
+              const mailOptions = {
+                from: 'y.erbas023@gmail.com',
+                to: req.body.email,
+                subject: 'Bookbuddy',
+                text: 'Welkom bij Bookbuddy! Heel veel succes met het vinden van jouw perfecte boek en veel leesplezier!'
+              };
+              
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });
+              
               // return res.status(200).json({newUser})
               return res.redirect('/login');
           }
