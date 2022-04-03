@@ -42,7 +42,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 app.use(flash())
 app.use(methodOverride('_method'));
-app.use(session({ secret: 'process.env.SESSION_SECRET', saveUninitialized: false, resave: false }));
+app.use(session({ 
+  secret: 'process.env.SESSION_SECRET', 
+  saveUninitialized: false, 
+  resave: false,
+  // cookie: {
+  //   expires: 600000
+  // } 
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 // utilsDB(client).then(data => { console.log(data)})
@@ -59,38 +66,9 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs');
 
 //===============ROUTES===============
-
-// app.post('/register', async (req, res) => {
-//   try {
-//       User.findOne({ username: req.body.username }).then((user) => {
-//           if (user) {
-//               // Wanneer er al een gebruiker is met dit emailadres
-//               return res.status(400).json({ username: 'Er is al een gebruiker met deze gebruikersnaam.' });
-//           } else {
-//               // Genereer hash password
-//               // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
-//               const hash = bcrypt.hashSync(req.body.password, 10);
-
-//               // Wanneer er nog geen account is met dit emailadres dan wordt er een nieuw account aangemaakt
-//               const newUser = new User({
-//                   username: req.body.username,
-//                   password: hash,
-//               });
-
-//               // console.log(newUser.name)
-//               newUser.save();
-//               // return res.status(200).json({newUser})
-//               return res.redirect('/login');
-//           }
-//       });
-//   } catch (error) {
-//       throw new Error(error);
-//   }
-// });
-
 // Signup
 // Source https://soufiane-oucherrou.medium.com/user-registration-with-mongoose-models-81f80d9933b0
-app.post('/register', async (req, res) => {
+app.post('/register', async (req, res, done) => {
   try {
       User.findOne({ email: req.body.email }).then((user) => {
           if (user) {
@@ -199,6 +177,10 @@ app.post("/", (req, res) => {
 // });
 
 app.get('/', async (req, res) => {
+  if ( !req.isAuthenticated() ) {
+    res.redirect('/login')
+    return
+  }
 
   const boeken = await books.find().lean();
 
@@ -270,6 +252,11 @@ passport.deserializeUser((id, done) => {
   User.findById(id, (err, user)=> {
       done(err, user);
   })
+});
+
+// 404 pagina laden als de pagina niet bestaat
+app.use((req, res) => {
+  res.status(404).send('404 page not found');
 });
 
 //===============POORT=================
