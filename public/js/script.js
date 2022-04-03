@@ -205,18 +205,22 @@ if (formAccount) {
 
             if (accountPass.value.length != 0) {
                 if (accountPass.value == accountConfirmPass.value) {
-                    console.log('je wachwoord is hetzelfde');
+                    console.log('Het wachwoord is hetzelfde');
                     errorMessagePass.classList.remove('errormessage');
                     accountPass.classList.remove('error');
                     accountConfirmPass.classList.remove('error');
                 } else {
-                    console.log('je wachtwoord is niet gelijk');
+                    console.log('Het wachtwoord is niet gelijk');
+                    errorMessagePass.classList.remove('errormessage');
+                    accountPass.classList.remove('error');
+                    accountConfirmPass.classList.remove('error');
                     accountPass.classList.add('error');
                     accountConfirmPass.classList.add('error');
                     errorMessagePass.classList.add('errormessage');
+                    errorMessagePass.innerHTML = 'Het wachtwoord dat is ingevuld is niet hetzelfde.';
                 }
             } else {
-                console.log('wachtwoord mag niet leeg zijn');
+                console.log('Het wachtwoord mag niet leeg zijn');
                 errorMessagePass.classList.add('errormessage');
                 errorMessagePass.innerHTML = 'Er is geen wachtwoord ingevuld.';
                 accountPass.classList.add('error');
@@ -228,23 +232,23 @@ if (formAccount) {
 
 // swipe
 
-const like = document.querySelector('.yes')
-const dislike = document.querySelector('.no')
-const card = document.querySelector('.card')
+// const like = document.querySelector('.yes')
+// const dislike = document.querySelector('.no')
+// const card = document.querySelector('.card')
 
-like.addEventListener('submit', (event) => {
-    event.preventDefault();
-    card.classList.add('.cardLike')
+// like.addEventListener('submit', (event) => {
+//     event.preventDefault();
+//     card.classList.add('.cardLike')
 
-    card.addEventListener('animationend', () => {
-        cardLike.submit();
-    });
-});
+//     card.addEventListener('animationend', () => {
+//         cardLike.submit();
+//     });
+// });
 
-dislike.addEventListener('submit', (event) => {
-    card.classList.add('cardDislike')
+// dislike.addEventListener('submit', (event) => {
+//     card.classList.add('cardDislike')
 
-    card.addEventListener('animationend', () => {
-        cardDislike.submit();
-    });
-});
+//     card.addEventListener('animationend', () => {
+//         cardDislike.submit();
+//     });
+// });
