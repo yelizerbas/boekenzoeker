@@ -46,6 +46,7 @@ app.use(session({
   secret: 'process.env.SESSION_SECRET', 
   saveUninitialized: false, 
   resave: false,
+  // Resource: https://www.geeksforgeeks.org/how-to-expire-session-after-1-min-of-inactivity-in-express-session-of-express-js/
   // cookie: {
   //   expires: 600000
   // } 

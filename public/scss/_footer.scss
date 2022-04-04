@@ -1,0 +1,50 @@
+footer {
+    position: relative;
+
+    nav { 
+        background-color: $white;
+        box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+        padding: 2em;
+        border-radius: 20px;
+        position: fixed;
+        bottom: 2em;
+        left: 50%;
+        @include transform(translate(-50%));
+
+        ul {
+            @include display-flex;
+            @include flex-direction(row);
+            list-style: none;
+        }
+
+        a {
+            background-color: transparent;
+
+            svg {
+                color: $red;
+                @include transition(250ms ease-in);
+            }
+
+            &:hover {
+                background-color: transparent;
+
+                svg {
+                    color: $dark-blue;
+                }
+            }
+        }
+    }
+}
+
+#account + footer {
+    position: absolute;
+    left: 70px;
+    bottom: 60px;
+
+    nav {
+        position: inherit;
+        left: inherit;
+        bottom: inherit;
+        @include transform(inherit);
+    }
+}
