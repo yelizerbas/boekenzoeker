@@ -381,29 +381,3 @@ form.buttons {
 div img {
     width: 200px;
 }
-
-.like div {
-    background-color: white;
-    width: 30em;
-    height: 40em;
-}
-
-/* .cardLike {
-    animation: like 1s;
-}
-
-@keyframes like {
-    to {
-        transform: rotate(20deg) translateX(30em) translateY(-20em);
-    }
-}
-
-.cardDislike {
-    animation: dislike 1s;
-}
-
-@keyframes dislike {
-    to {
-        transform: translateX(-100em);
-    }
-} */

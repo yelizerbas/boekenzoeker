@@ -68,13 +68,47 @@
             border-radius: 2em;
             display: grid;
             grid-template-columns: 1fr 1fr;
-    
+
             img {
                 width: 200px;
             }
 
             h2 {
                 font-size: 1.5em;
+            }
+        }
+    }
+}
+
+.knoppen {
+    display: flex;
+    justify-content: center;
+
+    ul {
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        list-style-type: none;
+
+        li {
+
+
+            form {
+                width: 1em;
+                height: 1em;
+                border-radius: 10px;
+
+                background-color: white;
+                border: none;
+
+                font: dunbar-tall, sans-serif;
+
+                input {
+                    border: none;
+                    background-color: white;
+
+                    font: dunbar-tall, sans-serif;
+                }
             }
         }
     }

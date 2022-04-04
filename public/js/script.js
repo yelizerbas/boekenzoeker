@@ -265,6 +265,7 @@ container.addEventListener('animationend', () => {
 //         cardDislike.submit();
 //     });
 // });
+
 // error message filteren
 const form = document.querySelector("form:first-of-type");
 const buttonThriller = document.getElementById("thriller");

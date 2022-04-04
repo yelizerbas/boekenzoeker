@@ -21,13 +21,6 @@
 
     <section>
         {{#each data}}
-        <section>
-            <img src={{this.imgSrc}} alt="foto van boek" />
-            <article>
-                <h2>{{this.titel}}, {{this.auteur}}</h2>
-                <p>{{this.genre}}</p>
-            </article>
-        </section>
 
         <section>
             <img src={{this.imgSrc}} alt="foto van boek" />
@@ -37,6 +30,17 @@
                 <p>{{this.genre}}</p>
                 <p>{{this.taal}}</p>
                 <p>{{this.samenvatting}}</p>
+            </article>
+
+            <article class="knoppen">
+                <ul>
+                    <li>
+                        <form id="ja" action="like" , method="POST">
+                            <input type="button" value="Ja">
+                        </form>
+                    </li>
+                </ul>
+
             </article>
         </section>
 
