@@ -261,10 +261,19 @@ app.get('/logout', (req, res) => {
     
 // like pagina
 app.get('/like', (req, res) => {
+  if ( !req.isAuthenticated() ) {
+    res.redirect('/login')
+    return
+  }
+
   res.render('like');
 })
 
 app.get('/favorites', (req, res) => {
+  if ( !req.isAuthenticated() ) {
+    res.redirect('/login')
+    return
+  }
   res.render('favorites');
 })
   
