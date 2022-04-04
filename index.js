@@ -2,7 +2,9 @@
 require('dotenv').config()
 
 const express = require('express');
-const { engine } = require('express-handlebars');
+const {
+  engine
+} = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -12,7 +14,9 @@ const LocalStrategy = require('passport-local');
 const flash = require('express-flash');
 const bcrypt = require('bcryptjs')
 const multer = require('multer');
-const { utilsDB } = require('./utils/db')
+const {
+  utilsDB
+} = require('./utils/db')
 
 require('./functions.js')(passport);
 
@@ -29,16 +33,22 @@ const books = require('./models/books');
 const mongoose = require('mongoose');
 
 // Regelt connectie met database
-mongoose.connect(mongodbUrl, { useNewURLParser: true })
+mongoose.connect(mongodbUrl, {
+    useNewURLParser: true
+  })
   .then(() => console.log('Database is geconnect'))
   .catch(err => console.log(err));
 
 // EXPRESS
 // Express Configureren
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(upload.array());
 app.use(flash())
 app.use(methodOverride('_method'));
@@ -69,6 +79,7 @@ app.set('view engine', 'hbs');
 //===============ROUTES===============
 // Signup
 const nodemailer = require('nodemailer');
+const { Router } = require('express');
 require('dotenv').config()
 
 const transporter = nodemailer.createTransport({
@@ -82,23 +93,27 @@ const transporter = nodemailer.createTransport({
 // Source https://soufiane-oucherrou.medium.com/user-registration-with-mongoose-models-81f80d9933b0
 app.post('/register', async (req, res, done) => {
   try {
-      User.findOne({ email: req.body.email }).then((user) => {
-          if (user) {
-              // Wanneer er al een gebruiker is met dit emailadres
-              return res.status(400).json({ email: 'Er is al een gebruiker met dit emailadres.' });
-          } else {
-              // Genereer hash password
-              // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
-              const hash = bcrypt.hashSync(req.body.password, 10);
-              const verified = bcrypt.compareSync(req.body.confirm_password, hash);
+    User.findOne({
+      email: req.body.email
+    }).then((user) => {
+      if (user) {
+        // Wanneer er al een gebruiker is met dit emailadres
+        return res.status(400).json({
+          email: 'Er is al een gebruiker met dit emailadres.'
+        });
+      } else {
+        // Genereer hash password
+        // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
+        const hash = bcrypt.hashSync(req.body.password, 10);
+        const verified = bcrypt.compareSync(req.body.confirm_password, hash);
 
-              // Wanneer er nog geen account is met dit emailadres dan wordt er een nieuw account aangemaakt
-              const newUser = new User({
-                  name: req.body.name,
-                  email: req.body.email,
-                  password: hash,
-                  confirmpassword: verified,
-              });
+        // Wanneer er nog geen account is met dit emailadres dan wordt er een nieuw account aangemaakt
+        const newUser = new User({
+          name: req.body.name,
+          email: req.body.email,
+          password: hash,
+          confirmpassword: verified,
+        });
 
               // console.log(newUser.name)
               newUser.save();
@@ -130,57 +145,81 @@ app.post('/register', async (req, res, done) => {
 app.post('/login', (req, res, next) => {
   let errors = [];
   passport.authenticate('local', {
-      failureFlash: true,
-      successRedirect: '/',
-      failureRedirect: `/login?email=${req.body.email}`, 
+    failureFlash: true,
+    successRedirect: '/',
+    failureRedirect: `/login?email=${req.body.email}`,
   })(req, res, next)
-  errors.push({ msg: 'email not found' })
+  errors.push({
+    msg: 'email not found'
+  })
 });
 
 // Account aanpassen
 app.post('/update', async (req, res) => {
-  User.findOneAndUpdate({ name:req.user.name }, { name:req.body.name }, { new: true }, (err, data) => {
-      if(err){
-          console.log(err);
-      }
-      else{
-          console.log('name updated');
-      }
+  User.findOneAndUpdate({
+    name: req.user.name
+  }, {
+    name: req.body.name
+  }, {
+    new: true
+  }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('name updated');
+    }
   });
-  User.findOneAndUpdate({ email:req.user.email }, { email:req.body.email }, { new: true }, (err, data) => {
-      if(err){
-          console.log(err);
-      }
-      else{
-          console.log('email updated');
-      }
+  User.findOneAndUpdate({
+    email: req.user.email
+  }, {
+    email: req.body.email
+  }, {
+    new: true
+  }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('email updated');
+    }
   });
   // Source https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt
   const hash = bcrypt.hashSync(req.body.password, 10);
   const verified = bcrypt.compareSync(req.body.confirm_password, hash);
-  User.findOneAndUpdate({ password:req.user.password }, { password:hash }, { new: true }, (err, data) => {
-      if(err){
-          console.log(err);
-      }
-      else{
-          console.log('password updated');
-      }
+  User.findOneAndUpdate({
+    password: req.user.password
+  }, {
+    password: hash
+  }, {
+    new: true
+  }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('password updated');
+    }
   });
-  User.findOneAndUpdate({ confirmpassword:req.user.confirm_password }, { confirmpassword:verified }, { new: true }, (err, data) => {
-      if(err){
-          console.log(err);
-      }
-      else{
-          console.log('password updated');
-      }
+  User.findOneAndUpdate({
+    confirmpassword: req.user.confirm_password
+  }, {
+    confirmpassword: verified
+  }, {
+    new: true
+  }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('password updated');
+    }
   });
   res.redirect('/account');
 });
 
 // Laat de gebruiker zijn/haar account verwijderen
 app.post("/", (req, res) => {
-  User.findOneAndDelete({ email: req.body.delete }, (err) =>  {
-    if(err) console.log(err);
+  User.findOneAndDelete({
+    email: req.body.delete
+  }, (err) => {
+    if (err) console.log(err);
     console.log("Successful deletion");
   });
   res.redirect('/login');
@@ -196,7 +235,9 @@ app.get('/', async (req, res) => {
   const boeken = await books.find().lean();
 
   console.log(boeken)
-    res.render('main', {data: boeken});
+  res.render('main', {
+    data: boeken
+  });
 });
 
 app.post("/formulier", async(req, res) => {
@@ -238,15 +279,15 @@ app.get('/register', (req, res) => {
 
 // Account laten zien en data ophalen uit database
 app.get('/account', (req, res) => {
-  if ( !req.isAuthenticated() ) {
+  if (!req.isAuthenticated()) {
     res.redirect('/login')
     return
   }
 
   res.render('account', {
-      name: req.user.name,
-      email: req.user.email,
-      title: 'Account - BookBuddy'
+    name: req.user.name,
+    email: req.user.email,
+    title: 'Account - BookBuddy'
   });
 });
 
@@ -258,16 +299,50 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
-    
-// like pagina
-app.get('/like', (req, res) => {
-  if ( !req.isAuthenticated() ) {
-    res.redirect('/login')
-    return
-  }
 
-  res.render('like');
+// like pagina + boeken uit de database halen, 1 tegelijk laten zien
+app.get('/like', async (req, res) => {
+
+  const boeken = await books.find().lean();
+
+  console.log(boeken)
+  res.render('like', { data: boeken[0] });
+
+  // if ( !req.isAuthenticated() ) {
+  //   res.redirect('/login')
+  //   return
+  // }
 })
+
+// exports.books = async () => {
+//   const boeken = await books.find();
+//   return boeken;
+// }
+
+// exports.productById = async id => {
+//   const boeken = await books.findById(id);
+//   return boeken;
+// }
+
+// exports.createbooks = async payload => {
+//   const newboeken = await books.create(payload);
+//   return newboeken;
+// }
+
+// exports.removebooks = async id => {
+//   const boeken = await this.books.findByIdAndRemove(id);
+//   return boeken;
+// }
+
+// like pagina
+// app.get('/like', (req, res) => {
+//   if ( !req.isAuthenticated() ) {
+//     res.redirect('/login')
+//     return
+//   }
+
+//   res.render('like');
+// })
 
 app.get('/favorites', (req, res) => {
   if ( !req.isAuthenticated() ) {
@@ -276,16 +351,16 @@ app.get('/favorites', (req, res) => {
   }
   res.render('favorites');
 })
-  
+
 // PASSPORT
 // Passport sessie.
-passport.serializeUser((user, done)=> {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user)=> {
-      done(err, user);
+  User.findById(id, (err, user) => {
+    done(err, user);
   })
 });
 

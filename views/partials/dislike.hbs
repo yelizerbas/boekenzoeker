@@ -1,0 +1,18 @@
+<section>
+
+    {{#each boeken}}
+    <ul>
+        <li><img src={{this.imgSrc}} alt="foto van boek" loading="lazy" /></li>
+        <li>
+            <h2>{{this.titel}}, {{this.auteur}}</h2>
+        </li>
+        <li>
+            <p>{{this.genre}}</p>
+        </li>
+        <li>
+            <p>{{this.taal}}</p>
+        </li>
+        </div>
+        {{/each}}
+
+</section>

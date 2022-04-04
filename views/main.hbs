@@ -1,8 +1,8 @@
 <main id="filter">
     <h1>Filteren</h1>
     <section>
-        <form id="filter" action="/formulier", method="POST">
-        <h3 id="errorFilteren"></h3>
+        <form id="filter" action="/formulier" , method="POST">
+            <h3 id="errorFilteren"></h3>
             <input type="radio" name="genre" value="Thriller" id="thriller" required>
             <label for="thriller"> Thriller</label>
 
@@ -11,7 +11,7 @@
 
             <input type="radio" name="genre" value="Young Adult" id="young-adult">
             <label for="young-adult"> Young Adult</label>
-        
+
             <input type="radio" name="genre" value="Romance" id="romance">
             <label for="romance"> Romance</label>
 
@@ -21,19 +21,32 @@
 
     <section>
         {{#each data}}
-            <section>
-                <img src={{this.imgSrc}} alt="foto van boek"/>
-                <article>
-                    <h2>{{this.titel}}</h2>
-                    <h3>{{this.auteur}}</h3>
-                    <p>{{this.genre}}</p>
-                    <p>{{this.taal}}</p>
-                    <p>{{this.samenvatting}}</p>
-                </article>
-            </section>
+
+        <section>
+            <img src={{this.imgSrc}} alt="foto van boek" />
+            <article>
+                <h2>{{this.titel}}</h2>
+                <h3>{{this.auteur}}</h3>
+                <p>{{this.genre}}</p>
+                <p>{{this.taal}}</p>
+                <p>{{this.samenvatting}}</p>
+            </article>
+
+            <article class="knoppen">
+                <ul>
+                    <li>
+                        <form id="ja" action="like" , method="POST">
+                            <input type="button" value="Ja">
+                        </form>
+                    </li>
+                </ul>
+
+            </article>
+        </section>
+
         {{/each}}
     </section>
 
 </main>
 
- {{>footer}}   
+{{>footer}}

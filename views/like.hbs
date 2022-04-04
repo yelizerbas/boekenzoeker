@@ -1,4 +1,23 @@
+<body class="like">
 
-{{> header}}
-{{> footer}}
+    <div id="container">
+        <img src={{this.imgSrc}} alt="foto van boek" loading="lazy" />
+        <h2>{{this.titel}}, {{this.auteur}}</h2>
+        <p>{{this.genre}}</p>
 
+        <form id="yes" action="/add-to-favorites" , method="POST">
+            <input type="button" value="Yes!">
+        </form>
+
+        <form id="no" action="/dislike" , method="POST">
+            <input type="button" value="No.."></li>
+        </form>
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+    {{> footer}}
+
+</body>
