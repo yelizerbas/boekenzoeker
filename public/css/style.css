@@ -413,8 +413,8 @@ div img {
     border-radius: 0;
 }
 
-/* .cardLike {
-    animation: like 2s;
+.cardLike {
+    animation: like 1s;
 }
 
 @keyframes like {
@@ -431,4 +431,4 @@ div img {
     to {
         transform: translateX(-100em);
     }
-} */
+}

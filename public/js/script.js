@@ -232,9 +232,18 @@ if (formAccount) {
 
 // swipe
 
-// const like = document.querySelector('.yes')
-// const dislike = document.querySelector('.no')
-// const card = document.querySelector('.card')
+const like = document.getElementById('yes')
+const dislike = document.getElementById('no')
+const container = document.getElementById('container')
+
+like.addEventListener('submit', () => {
+    // event.preventDefault();
+    container.classList.add('like');
+})
+
+container.addEventListener('animationend', () => {
+    like.submit();
+})
 
 // like.addEventListener('submit', (event) => {
 //     event.preventDefault();
