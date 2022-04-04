@@ -1,0 +1,177 @@
+form {
+    background-color: $white;
+    box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+    max-width: 30em;
+    width: 100%;
+    padding: 3em 2.5em;
+    border-radius: 2em;
+    @include display-flex;
+    @include flex-wrap(wrap);
+
+    fieldset {
+        width: 100%;
+        border: none;
+
+        label {
+            display: block;
+            font-size: 1em;
+    
+            &:first-of-type {
+                margin-top: 20px; 
+            }
+        }
+
+        input {
+            background-color: $bleu-gray;
+            width: 100%;
+            height: 40px;
+            padding: 0 10px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 1em;
+            display: block;
+    
+            &:active, &:focus {
+                outline: 0;
+                border: 2px solid $turquoise;
+            }
+    
+            &:first-of-type {
+                margin-bottom: 1em;
+            }
+    
+            &[type="submit"] {
+                margin: 2em 0 0 0;
+                float: right;
+    
+                &:focus {
+                    border: none;
+                }
+            }
+        }
+
+        & + p {
+            margin-top: 1em;
+            @include display-flex;
+
+            a {
+                background-color: transparent;
+                width: auto;
+                height: auto;
+                padding: 0;
+                margin: 0 0 0 0.5em;
+                color: $red;
+                text-decoration: underline;
+                @include transition(250ms ease-in);
+
+                &:hover {
+                    background-color: transparent;
+                    color: $dark-blue;
+                }
+            }
+        }
+
+    }
+
+    .error {
+        border: 2px solid $red;
+    }
+    
+    .messagename, 
+    .messageemail,
+    .messagepassword {
+        display: none;
+    }
+    
+    .errormessage {
+        margin-bottom: 10px;
+        display: block;
+        color: $red;
+    }
+
+    .hide {
+        display: none;
+
+        & + button {
+            background-color: transparent;
+            width: auto;
+            height: auto;
+            padding: 0;
+            margin: 0 0 0 0.5em;
+            color: $dark-blue;
+            text-decoration: underline;
+            @include transition(250ms ease-in);
+
+            &:hover {
+                background-color: transparent;
+                color: $red;
+            }
+        }
+    }
+}
+
+/* Specifiek voor de signup pagina */
+#signup {
+    input:not([type="submit"]) {
+        margin-bottom: 1em;
+    }
+}
+
+/* Specifiek voor de login pagina */
+#formlogin { 
+    .errormessage {
+        margin-top: 16px;
+    }
+}
+
+/* Specifiek voor de account pagina */
+#account { 
+    section:first-of-type:not(.naastelkaar) {
+        background-color: $white;
+        box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+        border-radius: 2em;
+
+        form {
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+
+    .naastelkaar {
+        @include display-flex;
+        
+        form {
+            padding: 0 0 2.5em;
+
+            &:first-of-type {
+                padding: 0 3em 2.5em;
+
+                button {
+                    background-color: transparent;
+                    width: auto;
+                    height: auto;
+                    padding: 0;
+                    margin: 0 0 0 0.5em;
+                    color: $red;
+                    text-decoration: underline;
+                    @include transition(250ms ease-in);
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $dark-blue;
+                    }
+                }
+            }
+
+            &:last-of-type {
+                padding: 0 2.5em 3em 0;
+                @include display-flex;
+                @include justify-content(flex-end);
+            }
+
+            button {
+                margin: 0;
+            }
+        }
+    }
+}
