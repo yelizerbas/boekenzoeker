@@ -3,69 +3,79 @@
     "titel": "14 ways to die",
     "auteur": "Vincent Ralph",
     "genre": "Thriller",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "14 Ways to Die is a novel about 17 year old Jessica, who wins a spot on a live-streamed reality show that follows her around and documents her every movement each Monday. Jessica's goal: to flush out the Magpie Man, the serial killler who murdered her mom 10 years ago."
 },
 {
     "imgSrc": "images/win.jpeg",
     "titel": "Win",
     "auteur": "Harlan Coben",
     "genre": "Thriller",
-    "taal": "Nederlands"
+    "taal": "Engels",
+    "samenvatting": "Win is a sinister, tortuous tale that finally gives Myron Bolitar’s sidekick the hedonistic Windsor Horne Lockwood III centre stage when a painting stolen from his family long ago and his monogrammed suitcase from when he was a teen is discovered in the home of a murdered recluse who may also have ties to the activist bombing group known as the Jane Street Six."
 },
 {
     "imgSrc": "images/Verity.jpeg",
     "titel": "Verity",
     "auteur": "Colleen Hoover",
     "genre": "Mystery",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "Verity describes in details how their sexual life was and how it changed, what she thought about getting pregnant, about being a mother, and how she wished they would have been never born because they took her husband away from her. The story takes you through everyone's fears and darkness."
 },
 {
     "imgSrc": "images/The-Paris-Apartment.jpeg",
     "titel": "The Paris Apartment",
     "auteur": "Lucy Foley",
     "genre": "Mystery",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "Following a young woman escaping turmoil in her personal life for the refuge of her brother's home in a posh Parisian apartment building, The Paris Apartment invites readers into a world of intrigue, where everyone's a suspect, and nothing is quite as it seems."
 },
 {
     "imgSrc": "images/13-minuten.jpeg",
     "titel": "13 minuten",
     "auteur": "Sara Pinborough",
     "genre": "Mystery",
-    "taal": "Nederlands"
+    "taal": "Nederlands",
+    "samenvatting": "Ik was dertien minuten dood. Ik kan me niet meer herinneren hoe ik in het ijskoude water terechtkwam, maar dit weet ik nog wel: het was geen ongeluk en ik was niet suïcidaal. Ze zeggen dat je je vrienden dichtbij moet houden en je vijanden nog dichterbij, maar als je een tiener bent, is het moeilijk om ze uit elkaar te houden."
 },
 {
     "imgSrc": "images/They-Both-Die-at-the-End.jpeg",
     "titel": "They Both Die at the End",
     "auteur": "Adam Silvera",
     "genre": "Young Adult",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "They Both Die at the End is a devastating yet uplifting story about two people whose lives change over the course of one unforgettable day. According to the book synopsis: “On September 5, a little after midnight, Death-Cast calls Mateo Torrez and Rufus Emeterio to give them some bad news: They're going to die today."
 },
 {
     "imgSrc": "images/One-of-Us-Is-Lying.jpeg",
     "titel": "One of Us Is Lying",
     "auteur": "Karen M. McManus",
     "genre": "Young Adult",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "One of Us is Lying follows the gripping story of Bronwyn, Addy, Nate, and Cooper as suspects in the murder of Simon Kelleher. Each of the high school students have secrets that they would do anything to protect, so how far would they go to make sure they're kept out of the spotlight?"
 },
 {
     "imgSrc": "images/all-the-bright-places.jpeg",
     "titel": "All the Bright Places",
     "auteur": "Jennifer Niven",
     "genre": "Young Adult",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "After meeting each other, two teenagers struggle with the emotional and physical scars of their pasts. They discover that even the smallest moments can mean something."
 },
 {
     "imgSrc": "images/People-we-meet-on-vacation.jpeg",
     "titel": "People we meet on vacation",
     "auteur": "Emily Henry",
     "genre": "Romance",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "Poppy has everything she should want, but she's stuck in a rut. When someone asks when she was last truly happy, she knows, without a doubt, it was on that ill-fated, final trip with Alex. And so, she decides to convince her best friend to take one more vacation together—lay everything on the table, make it all right."
 },
 {
     "imgSrc": "images/Good-Girl-Complex.jpeg",
     "titel": "Good Girl Complex",
     "auteur": "Elle Kennedy",
     "genre": "Romance",
-    "taal": "Engels"
+    "taal": "Engels",
+    "samenvatting": "Mackenzie “Mac” Cabot is a people pleaser. It's exhausting, really, always following the rules. Unlike most twenty-year-olds, all she really wants to do is focus on growing her internet business, but first she must get a college degree at her parents' insistence"
 }
 ]
