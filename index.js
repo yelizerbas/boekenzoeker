@@ -228,12 +228,23 @@ app.post("/formulier", async(req, res) => {
 
 //Log-in pagina laten zien
 app.get('/login', (req, res) => {
+  if ( req.isAuthenticated() ) {
+    res.redirect('/')
+    next()
+  }
+  
   res.render('login');
 });
 
 //Registreer pagina laten zien
 app.get('/register', (req, res) => {
-  res.render('register');
+  if ( req.isAuthenticated() ) {
+    res.redirect('/')
+    next()
+  }
+
+
+  res.render('register')
 });
 
 // Account laten zien en data ophalen uit database
@@ -291,7 +302,7 @@ passport.deserializeUser((id, done) => {
 
 // 404 pagina laden als de pagina niet bestaat
 app.use((req, res) => {
-  res.status(404).send('404 page not found');
+  res.render('error')
 });
 
 //===============POORT=================
