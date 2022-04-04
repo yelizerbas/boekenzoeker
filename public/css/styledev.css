@@ -397,6 +397,31 @@ form .hide + button:hover {
   position: relative;
   padding-left: 70px;
 }
+#filter section:first-of-type form input {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #08BDBD;
+  border-radius: 20px;
+  appearance: none;
+}
+#filter section:first-of-type form input:checked {
+  background-color: #08BDBD;
+}
+#filter section:first-of-type form input:hover {
+  cursor: pointer;
+}
+#filter section:first-of-type form label {
+  display: inline-block;
+  width: 85%;
+  margin: 0 0 1.2em 5px;
+}
+#filter section:first-of-type form label:hover {
+  cursor: pointer;
+}
+#filter section:first-of-type form button {
+  margin-top: 1.5em;
+}
 #filter section:last-of-type {
   max-width: calc(75% - 1em);
   padding: 0 70px 170px 0;
