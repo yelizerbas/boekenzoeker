@@ -1,0 +1,80 @@
+/* Algemene code voor heel het project */
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bleu-gray);
+    @include display-flex;
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include justify-content(center);
+
+    &::before {
+        content: '';
+        background-image: url(../images/books-bg-desktop.png);
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
+
+header, main {
+    max-width: calc(50% - 50px);
+    width: 100%;
+    height: 100vh;
+    @include display-flex;
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include justify-content(center);
+}
+
+h1 {
+    font-family: $title-font;
+    font-weight: 900;
+    font-size: 6em;
+    color: $turquoise;
+}
+
+h2, legend {
+    font-family: $title-font;
+    font-weight: 700;
+    font-size: 2.3em;
+    color: $turquoise;
+}
+
+p, label {
+    font-family: $base-font;
+    font-weight: 400;
+    color: $black;
+}
+
+a, button, input[type="submit"] {
+    background-color: $red;
+    width: 120px;
+    height: 45px;
+    border: none;
+    border-radius: 0.5em;
+    margin-right: 10px;
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+    font-family: $title-font;
+    font-weight: 600;
+    font-size: 1em;
+    color: $white;
+    text-decoration: none;
+    @include transition(250ms ease-in);
+    cursor: pointer;
+
+    &:hover {
+        background-color: $dark-blue;
+    }
+}

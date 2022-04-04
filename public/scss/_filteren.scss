@@ -1,0 +1,47 @@
+#filter {
+    @include display-flex;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include align-items(flex-start);
+    max-width: 100%;
+
+    h1 {
+        display: block;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    section:first-of-type {
+        max-width: calc(25% - 1em);
+        position: relative;
+        padding-left: 70px;
+    }
+
+    section:last-of-type {
+        max-width: calc(75% - 1em);
+        padding: 0 70px 170px 0;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        column-gap: 1em;
+        row-gap: 1em;
+
+        section {
+            background-color: $white;
+            box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+            max-width: 100%;
+            padding: 3em 2.5em;
+            border-radius: 2em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+    
+            img {
+                width: 200px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    }
+}

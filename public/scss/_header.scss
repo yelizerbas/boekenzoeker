@@ -1,0 +1,18 @@
+header {
+    h1 {
+        width: 100%;
+    }
+
+    p {
+        display: block;
+        font-family: $title-font;
+        font-size: 1.2em;
+        font-weight: 900;
+        color: $red;
+
+        span {
+            font-weight: 600;
+            color: $dark-blue;
+        }
+    }
+}

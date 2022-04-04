@@ -56,6 +56,7 @@ app.use(session({
   secret: 'process.env.SESSION_SECRET', 
   saveUninitialized: false, 
   resave: false,
+  // Resource: https://www.geeksforgeeks.org/how-to-expire-session-after-1-min-of-inactivity-in-express-session-of-express-js/
   // cookie: {
   //   expires: 600000
   // } 
@@ -77,6 +78,18 @@ app.set('view engine', 'hbs');
 
 //===============ROUTES===============
 // Signup
+const nodemailer = require('nodemailer');
+const { Router } = require('express');
+require('dotenv').config()
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'y.erbas023@gmail.com',
+    pass: process.env.MAIL_PASSWORD
+  }
+});
+
 // Source https://soufiane-oucherrou.medium.com/user-registration-with-mongoose-models-81f80d9933b0
 app.post('/register', async (req, res, done) => {
   try {
@@ -102,12 +115,27 @@ app.post('/register', async (req, res, done) => {
           confirmpassword: verified,
         });
 
-        // console.log(newUser.name)
-        newUser.save();
-        // return res.status(200).json({newUser})
-        return res.redirect('/login');
-      }
-    });
+              // console.log(newUser.name)
+              newUser.save();
+              const mailOptions = {
+                from: 'y.erbas023@gmail.com',
+                to: req.body.email,
+                subject: 'Bookbuddy',
+                text: 'Welkom bij Bookbuddy! Heel veel succes met het vinden van jouw perfecte boek en veel leesplezier!'
+              };
+              
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });
+              
+              // return res.status(200).json({newUser})
+              return res.redirect('/login');
+          }
+      });
   } catch (error) {
     throw new Error(error);
   }
@@ -197,23 +225,7 @@ app.post("/", (req, res) => {
   res.redirect('/login');
 });
 
-//FILTEREN
-// app.post("/formulier", async(req, res) => {
-
-//   const boeken = await utilsDB(client); 
-
-//   console.log(req.body);
-//   // Filter boeken
-//   const filteredBoeken = boeken.filter((boeken) => {
-//     // Stop het item alleen in de array wanneer onderstaande regel 'true' is, dus als de doelen overeen komen met de radiobutton
-//     return boeken.genre == req.body.genre;
-//   });
-//   //render zelfde pagina, maar met de gefilterde boeken
-//   res.render("main", {
-//     boeken: filteredBoeken
-//   });
-// });
-
+// FILTEREN
 app.get('/', async (req, res) => {
   if ( !req.isAuthenticated() ) {
     res.redirect('/login')
@@ -226,6 +238,21 @@ app.get('/', async (req, res) => {
   res.render('main', {
     data: boeken
   });
+});
+
+app.post("/formulier", async(req, res) => {
+
+  const boeken = await books.find().lean(); 
+
+  console.log(req.body);
+  // Filter boeken
+  const filteredBoeken = boeken.filter((boeken) => {
+    // Stop het item alleen in de array wanneer onderstaande regel 'true' is, dus als de doelen overeen komen met de radiobutton
+    return boeken.genre == req.body.genre;
+  });
+  console.log(filteredBoeken);
+  //render zelfde pagina, maar met de gefilterde boeken
+  res.render('main', { data: filteredBoeken});
 });
 
 
@@ -280,9 +307,48 @@ app.get('/like', async (req, res) => {
 
   console.log(boeken)
   res.render('like', { data: boeken[0] });
+
+  // if ( !req.isAuthenticated() ) {
+  //   res.redirect('/login')
+  //   return
+  // }
 })
 
+// exports.books = async () => {
+//   const boeken = await books.find();
+//   return boeken;
+// }
+
+// exports.productById = async id => {
+//   const boeken = await books.findById(id);
+//   return boeken;
+// }
+
+// exports.createbooks = async payload => {
+//   const newboeken = await books.create(payload);
+//   return newboeken;
+// }
+
+// exports.removebooks = async id => {
+//   const boeken = await this.books.findByIdAndRemove(id);
+//   return boeken;
+// }
+
+// like pagina
+// app.get('/like', (req, res) => {
+//   if ( !req.isAuthenticated() ) {
+//     res.redirect('/login')
+//     return
+//   }
+
+//   res.render('like');
+// })
+
 app.get('/favorites', (req, res) => {
+  if ( !req.isAuthenticated() ) {
+    res.redirect('/login')
+    return
+  }
   res.render('favorites');
 })
 
