@@ -16,6 +16,40 @@
         max-width: calc(25% - 1em);
         position: relative;
         padding-left: 70px;
+
+        form {
+
+            input {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 2px solid $turquoise;
+                border-radius: 20px;
+                appearance: none;
+
+                &:checked {
+                    background-color: $turquoise;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            label {
+                display: inline-block;
+                width: 85%;
+                margin: 0 0 1.2em 5px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            button {
+                margin-top: 1.5em;
+            }
+        }
     }
 
     section:last-of-type {

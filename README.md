@@ -39,7 +39,9 @@ $   git clone https://github.com/yelizerbas/boekenzoeker.git
 Dit project maakt gebruik van een database bij MongoDB. Om je eigen database te connecten moet je een bestand .env aan maken met de volgende regel erin:
 
 ```
-$   MONGO_URI=Hier de link naar je eigen database
+$   DB_USERNAME = "Jouw eigen database gebruikersnaam"
+    DB_PASSWORD = "Jouw eigen database wachtwoord"
+    MAIL_PASSWORD = "Jouw eigen mail wachtwoord"
 ```
 Vervolgens is hetr tijd om te gaan installeren, dit doe je door dit te typen in je terminal:
 

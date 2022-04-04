@@ -265,3 +265,33 @@ container.addEventListener('animationend', () => {
 //         cardDislike.submit();
 //     });
 // });
+// error message filteren
+const form = document.querySelector("form:first-of-type");
+const buttonThriller = document.getElementById("thriller");
+const buttonMystery = document.getElementById("mystery");
+const buttonYoungAdult = document.getElementById("young-adult");
+const buttonRomace = document.getElementById("romance");
+const error = document.getElementById("errorFilteren");
+
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (buttonThriller.checked == true) {
+        form.submit();
+    } else if (buttonMystery.checked == true) {
+        form.submit();
+    } else if (buttonYoungAdult.checked == true) {
+        form.submit();
+    } else if (buttonRomace.checked == true) {
+        form.submit();
+    } else {
+        error.innerHTML = "Je hebt nog geen genre gekozen";
+    }
+});
+
+const deleteRequired = () => {
+    document.getElementById("thriller").removeAttribute("required");
+}
+
+deleteRequired();
