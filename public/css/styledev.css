@@ -469,5 +469,8 @@ form .hide + button:hover {
   background-color: white;
   font: dunbar-tall, sans-serif;
 }
+.knoppen ul li form input form input:hover {
+  transform: scale(2);
+}
 
 /*# sourceMappingURL=styledev.css.map */

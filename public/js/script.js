@@ -234,38 +234,6 @@ if (formAccount) {
     });
 }
 
-// swipe
-
-const like = document.getElementById('yes')
-const dislike = document.getElementById('no')
-const container = document.getElementById('container')
-
-like.addEventListener('submit', () => {
-    // event.preventDefault();
-    container.classList.add('like');
-})
-
-container.addEventListener('animationend', () => {
-    like.submit();
-})
-
-// like.addEventListener('submit', (event) => {
-//     event.preventDefault();
-//     card.classList.add('.cardLike')
-
-//     card.addEventListener('animationend', () => {
-//         cardLike.submit();
-//     });
-// });
-
-// dislike.addEventListener('submit', (event) => {
-//     card.classList.add('cardDislike')
-
-//     card.addEventListener('animationend', () => {
-//         cardDislike.submit();
-//     });
-// });
-
 // error message filteren
 const form = document.querySelector("form:first-of-type");
 const buttonThriller = document.getElementById("thriller");

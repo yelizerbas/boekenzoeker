@@ -108,6 +108,10 @@
                     background-color: white;
 
                     font: dunbar-tall, sans-serif;
+
+                    form input:hover {
+                        transform: scale(2);
+                    }
                 }
             }
         }

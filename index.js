@@ -314,6 +314,26 @@ app.get('/like', async (req, res) => {
   // }
 })
 
+function updateLikes() {
+  id = $('ja').attr('ObjectId');
+  $.post('/favorites/' + id, function (response) {
+    $('ja').text(response.likeCount)
+  })
+}
+
+app.post('/favorites/:id', function (req, res) {
+  TestData.findById(req.params.id, function (err, theUser) {
+    if (err) {
+      console.log('er is iets misgegaan');
+    } else {
+      theUser.likes += 1;
+      theUser.save()
+      console.log(theUser.likes);
+      res.send({likeCount: theUser.likes});
+    }
+  })
+})
+
 // exports.books = async () => {
 //   const boeken = await books.find();
 //   return boeken;
