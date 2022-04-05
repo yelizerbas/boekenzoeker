@@ -33,16 +33,14 @@
             </article>
 
             <article class="knoppen">
-                <ul>
-                    <li>
-                        <form id="ja" action="like" , method="POST">
-                            <input type="button" value="Ja">
-                        </form>
-                    </li>
-                </ul>
-
+                <a class="likeIcon" userId={{data.id}} action="like" , method="POST" onclick="updateLikes"><i
+                        class="fa-solid fa-check"></i></a>
             </article>
+
         </section>
+
+
+
 
         {{/each}}
     </section>

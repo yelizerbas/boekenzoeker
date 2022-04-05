@@ -397,7 +397,7 @@ form .hide + button:hover {
   position: relative;
   padding-left: 70px;
 }
-#filter section:first-of-type form input {
+#filter section:first-of-type #filter input {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -405,21 +405,21 @@ form .hide + button:hover {
   border-radius: 20px;
   appearance: none;
 }
-#filter section:first-of-type form input:checked {
+#filter section:first-of-type #filter input:checked {
   background-color: #08BDBD;
 }
-#filter section:first-of-type form input:hover {
+#filter section:first-of-type #filter input:hover {
   cursor: pointer;
 }
-#filter section:first-of-type form label {
+#filter section:first-of-type #filter label {
   display: inline-block;
   width: 85%;
   margin: 0 0 1.2em 5px;
 }
-#filter section:first-of-type form label:hover {
+#filter section:first-of-type #filter label:hover {
   cursor: pointer;
 }
-#filter section:first-of-type form button {
+#filter section:first-of-type #filter button {
   margin-top: 1.5em;
 }
 #filter section:last-of-type {
@@ -449,28 +449,7 @@ form .hide + button:hover {
 .knoppen {
   display: flex;
   justify-content: center;
-}
-.knoppen ul {
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  list-style-type: none;
-}
-.knoppen ul li form {
-  width: 1em;
-  height: 1em;
-  border-radius: 10px;
-  background-color: white;
-  border: none;
-  font: dunbar-tall, sans-serif;
-}
-.knoppen ul li form input {
-  border: none;
-  background-color: white;
-  font: dunbar-tall, sans-serif;
-}
-.knoppen ul li form input form input:hover {
-  transform: scale(2);
+  padding: 10px;
 }
 
 /*# sourceMappingURL=styledev.css.map */
