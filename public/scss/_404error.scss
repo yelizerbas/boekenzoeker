@@ -1,0 +1,35 @@
+.error{
+    background-color: $white;
+    box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+    max-width: 30em;
+    width: 100%;
+    padding: 3em 2.5em;
+    border-radius: 2em;
+    display: block;
+   
+
+    h2{
+        margin-bottom: .5em;
+    }
+
+    p{
+        margin-bottom: 2em;
+
+    }
+
+    
+
+    
+    ul{
+        @include display-flex;
+        margin-top: -1em;
+    }
+
+    li{
+        list-style: none;
+        margin-bottom: .5em;
+    }
+
+
+
+}

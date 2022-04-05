@@ -452,4 +452,30 @@ form .hide + button:hover {
   padding: 10px;
 }
 
+.error {
+  background-color: #FFFFFF;
+  box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+  max-width: 30em;
+  width: 100%;
+  padding: 3em 2.5em;
+  border-radius: 2em;
+  display: block;
+}
+.error h2 {
+  margin-bottom: 0.5em;
+}
+.error p {
+  margin-bottom: 2em;
+}
+.error ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: -1em;
+}
+.error li {
+  list-style: none;
+  margin-bottom: 0.5em;
+}
+
 /*# sourceMappingURL=styledev.css.map */
