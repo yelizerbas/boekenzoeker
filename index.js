@@ -255,6 +255,36 @@ app.post("/formulier", async(req, res) => {
   res.render('main', { data: filteredBoeken});
 });
 
+// updateLikes( {
+//   id = $('.likeIcon').attr('userId'),
+//   $.post('/formulier/' + id, function(response))
+// $('fa-solid fa-check').text(response.likeCount);
+// });
+
+app.post('/formulier', async (req, res) => {
+  try {
+    await books.updateLikes(
+      { id: req.params.id},
+      { $push: {liked : req.body.id }}
+    )
+
+} catch (err) {
+  console.log(err);
+}})
+
+
+// app.post('/favorites/:id', function (req, res) {
+//   TestData.findById(req.params.id, function (err, theUser) {
+//     if (err) {
+//       console.log('er is iets misgegaan');
+//     } else {
+//       theUser.likes += 1;
+//       theUser.save()
+//       console.log(theUser.likes);
+//       res.send({likeCount: theUser.likes});
+//     }
+//   })
+// })
 
 //===============ROUTES===============
 
@@ -312,58 +342,17 @@ app.get('/logout', (req, res) => {
 });
 
 // like pagina + boeken uit de database halen, 1 tegelijk laten zien
-app.get('/like', async (req, res) => {
+// app.get('/like', async (req, res) => {
 
-  const boeken = await books.find().lean();
-
-  console.log(boeken)
-  res.render('like', { data: boeken[0] });
+//   
 
   // if ( !req.isAuthenticated() ) {
   //   res.redirect('/login')
   //   return
   // }
-})
+// })
 
-function updateLikes() {
-  id = $('ja').attr('ObjectId');
-  $.post('/favorites/' + id, function (response) {
-    $('ja').text(response.likeCount)
-  })
-}
 
-app.post('/favorites/:id', function (req, res) {
-  TestData.findById(req.params.id, function (err, theUser) {
-    if (err) {
-      console.log('er is iets misgegaan');
-    } else {
-      theUser.likes += 1;
-      theUser.save()
-      console.log(theUser.likes);
-      res.send({likeCount: theUser.likes});
-    }
-  })
-})
-
-// exports.books = async () => {
-//   const boeken = await books.find();
-//   return boeken;
-// }
-
-// exports.productById = async id => {
-//   const boeken = await books.findById(id);
-//   return boeken;
-// }
-
-// exports.createbooks = async payload => {
-//   const newboeken = await books.create(payload);
-//   return newboeken;
-// }
-
-// exports.removebooks = async id => {
-//   const boeken = await this.books.findByIdAndRemove(id);
-//   return boeken;
-// }
 
 // like pagina
 // app.get('/like', (req, res) => {
@@ -372,8 +361,6 @@ app.post('/favorites/:id', function (req, res) {
 //     return
 //   }
 
-//   res.render('like');
-// })
 
 app.get('/favorites', (req, res) => {
   if ( !req.isAuthenticated() ) {
