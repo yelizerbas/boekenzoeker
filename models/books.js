@@ -12,7 +12,7 @@ const bookSchema = new mongoose.Schema({
     },
     imgSrc: {
         type: String,
-    },
+    }
 });
 
 const books = mongoose.model('books', bookSchema)

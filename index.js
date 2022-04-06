@@ -226,6 +226,39 @@ app.post("/", (req, res) => {
   res.redirect('/login');
 });
 
+//LIKE
+
+app.get('/like', async (req, res) => {
+  res.render('like')
+}), (req, res) => {
+  res.send(req.params.titel)
+}
+
+app.get('/like', async (req, res) => {
+  if ( !req.isAuthenticated() ) {
+    res.redirect('/login')
+    return
+  }
+
+  const boeken = await books.find().lean();
+
+  res.render('like', {data: boeken })
+})
+
+app.post("/like/:titel", async (req, res) => {
+  books.findOneAndUpdate({ name: req.user.name }, { $push: { likedBooks : [this.titel] } }  , (err, data) => {
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log('boek geliked');
+        
+        // console.log(books.id);
+    } 
+  })
+})
+// res.redirect('/');
+
 // FILTEREN
 app.get('/', async (req, res) => {
   if ( !req.isAuthenticated() ) {
@@ -266,22 +299,7 @@ app.post("/formulier", async(req, res) => {
 // }
 
 
-app.get('/like', async (req, res) => {
-  res.render('like');
-})
 
-app.post('/like', async (req, res) => {
-
-  books.findOneAndUpdate({ titel: this.titel }, { likedBooks: "1" } , (err, data) => {
-    if(err) {
-      console.log(err);
-    }
-    else {
-      console.log('boek geliked!');
-      return books.likedBooks;
-    }
-  })
-})
 
   // books.updateOne({ titel: req.body.titel}), (err, data) => {
   //   if(err) {

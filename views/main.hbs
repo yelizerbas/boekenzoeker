@@ -21,7 +21,6 @@
 
     <section>
         {{#each data}}
-
         <section>
             <img src={{this.imgSrc}} alt="foto van boek" />
             <article>
@@ -30,17 +29,15 @@
                 <p>{{this.genre}}</p>
                 <p>{{this.taal}}</p>
                 <p>{{this.samenvatting}}</p>
+
+                <form action="/like/{{this.titel}}" method="POST">
+
+                    <input type="submit" value="LIKE">
+                </form>
             </article>
 
-            <form id="like" action="/like" , method="POST">
-                <input type="button" class="fa-solid fa-check">
-            </form>
 
         </section>
-
-
-
-
         {{/each}}
     </section>
 
