@@ -68,8 +68,6 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs');
 
 //===============ROUTES===============
-
-
 // Signup
 const nodemailer = require('nodemailer');
 require('dotenv').config()
@@ -190,9 +188,8 @@ app.post("/", (req, res) => {
 });
 
 
+
 // FILTEREN
-
-
 app.get('/', async (req, res) => {
   if ( !req.isAuthenticated() ) {
     res.redirect('/login')
@@ -218,6 +215,49 @@ app.post("/formulier", async(req, res) => {
   console.log(filteredBoeken);
   //render zelfde pagina, maar met de gefilterde boeken
   res.render('main', { data: filteredBoeken});
+});
+
+
+//LIKE
+
+
+app.post("/like", async (req, res) => {
+  try {
+      await books.findOneAndUpdate({ titel: req.body.like}, { likedBooks: "like" }).lean().exec();
+      const boeken = await books.find().lean();
+      res.render("main", {data: boeken});
+  } catch {
+      console.log("fout bij liken");
+  }
+
+  
+});
+
+// DISLIKE
+
+app.post("/dislike", async (req, res) => {
+try {
+    await books.findOneAndUpdate({titel: req.body.dislike}, { likedBooks: "" }).lean().exec();
+    
+    res.redirect("like");
+} catch {
+    console.log("fout bij liken");
+}
+
+
+
+});
+
+app.get('/like', async (req, res) => {
+if ( !req.isAuthenticated() ) {
+  res.redirect('/login')
+  return
+}
+
+const liked = await books.find( {likedBooks: "like"}).lean();
+
+console.log(liked)
+  res.render('like', {data: liked});
 });
 
 
@@ -268,15 +308,6 @@ app.get('/logout', (req, res) => {
   req.session.notice = "Succesvol uitgelogd " + name + "!";
 });
     
-// like pagina
-app.get('/like', (req, res) => {
-  if ( !req.isAuthenticated() ) {
-    res.redirect('/login')
-    return
-  }
-
-  res.render('like');
-})
 
 app.get('/favorites', (req, res) => {
   if ( !req.isAuthenticated() ) {

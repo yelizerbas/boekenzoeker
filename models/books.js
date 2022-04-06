@@ -14,6 +14,9 @@ const bookSchema = new mongoose.Schema({
     imgSrc: {
         type: String,
     },
+    likedBooks: {
+        type: Array,
+    }
 });
 
 const books = mongoose.model('books', bookSchema)
