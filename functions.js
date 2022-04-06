@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Source: https://github.com/WebDevSimplified/Nodejs-Passport-Login
 const localStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');

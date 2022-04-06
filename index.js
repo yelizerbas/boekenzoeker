@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 require('dotenv').config()
 
@@ -8,11 +9,11 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+
 const flash = require('express-flash');
 const bcrypt = require('bcryptjs')
 const multer = require('multer');
-const { utilsDB } = require('./utils/db')
+
 
 require('./functions.js')(passport);
 
@@ -67,6 +68,8 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs');
 
 //===============ROUTES===============
+
+
 // Signup
 const nodemailer = require('nodemailer');
 require('dotenv').config()
@@ -186,21 +189,10 @@ app.post("/", (req, res) => {
   res.redirect('/login');
 });
 
-//LIKE
-
-app.post("/like", (req, res) => {
-  User.findOneAndUpdate({ name: req.user.name }, { $push: { likedBooks : ["1"] } }  , (err, data) => {
-    if(err){
-        console.log(err);
-    }
-    else{
-        console.log('boek geliked');
-    }
-});
-res.redirect('/');
-});
 
 // FILTEREN
+
+
 app.get('/', async (req, res) => {
   if ( !req.isAuthenticated() ) {
     res.redirect('/login')
@@ -231,14 +223,6 @@ app.post("/formulier", async(req, res) => {
 
 //===============ROUTES===============
 
-// Homepagina laten zien
-// app.get('/', (req, res) => {
-//   if ( !req.isAuthenticated() ) {
-//     res.redirect('/login')
-//     return
-//   }
-//   res.render('main', {user: req.user});
-// });
 
 //Log-in pagina laten zien
 app.get('/login', (req, res) => {
