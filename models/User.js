@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
-    } 
+    },
+
+    likedBooks: {
+        type: Array,
+    }
 })
 
 const User = mongoose.model('User', userSchema)
