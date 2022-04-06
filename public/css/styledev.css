@@ -469,7 +469,7 @@ form .hide + button:hover {
   margin-top: 1em;
 }
 
-.error {
+.error404 {
   background-color: #FFFFFF;
   box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
   max-width: 30em;
@@ -478,19 +478,19 @@ form .hide + button:hover {
   border-radius: 2em;
   display: block;
 }
-.error h2 {
+.error404 h2 {
   margin-bottom: 0.5em;
 }
-.error p {
+.error404 p {
   margin-bottom: 2em;
 }
-.error ul {
+.error404 ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: -1em;
 }
-.error li {
+.error404 li {
   list-style: none;
   margin-bottom: 0.5em;
 }
