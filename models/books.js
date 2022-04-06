@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 var mongoose = require('mongoose');
 
 const bookSchema = new mongoose.Schema({
