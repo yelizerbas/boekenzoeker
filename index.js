@@ -80,6 +80,7 @@ app.set('view engine', 'hbs');
 // Signup
 const nodemailer = require('nodemailer');
 const { Router } = require('express');
+const { collection } = require('./models/User');
 require('dotenv').config()
 
 const transporter = nodemailer.createTransport({
@@ -254,23 +255,40 @@ app.post("/formulier", async(req, res) => {
   //render zelfde pagina, maar met de gefilterde boeken
   res.render('main', { data: filteredBoeken});
 });
+//   try {
+//     await books.updateLikes(
+//       { id: req.params.id},
+//       { $push: {liked : req.body.id }}
+//     )
 
-// updateLikes( {
-//   id = $('.likeIcon').attr('userId'),
-//   $.post('/formulier/' + id, function(response))
-// $('fa-solid fa-check').text(response.likeCount);
-// });
+// } catch (err) {
+//   console.log(err);
+// }
 
-app.post('/formulier', async (req, res) => {
-  try {
-    await books.updateLikes(
-      { id: req.params.id},
-      { $push: {liked : req.body.id }}
-    )
 
-} catch (err) {
-  console.log(err);
-}})
+app.get('/like', async (req, res) => {
+  res.render('like');
+})
+
+app.post('/like', async (req, res) => {
+
+  books.updateOne({ titel: req.body.titel}), (err, data) => {
+    if(err) {
+      console.log(err);
+    }
+
+    else {
+      return boeken.likedBooks;
+    }
+  }
+
+  // books.updateOne({ titel: req.body.titel },).then(boeken => {
+  //   console.log(req.body.titel)
+
+  //   return boeken.likedBooks;
+  // }) 
+
+})
 
 
 // app.post('/favorites/:id', function (req, res) {

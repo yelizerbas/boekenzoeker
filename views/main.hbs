@@ -32,10 +32,9 @@
                 <p>{{this.samenvatting}}</p>
             </article>
 
-            <article class="knoppen">
-                <a class="likeIcon" userId={{this.titel}} action="like" , method="POST" onclick="updateLikes()"><i
-                        class="fa-solid fa-check"></i></a>
-            </article>
+            <form id="like" action="/like" , method="POST">
+                <input type="button" class="fa-solid fa-check">
+            </form>
 
         </section>
 

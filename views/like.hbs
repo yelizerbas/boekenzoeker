@@ -1,8 +1,10 @@
 {{#each data}}
 
 <section>
+
     <img src={{this.imgSrc}} alt="foto van boek" />
     <article>
+        <p>{{this.body.id}}</p>
         <h2>{{this.titel}}</h2>
         <h3>{{this.auteur}}</h3>
         <p>{{this.genre}}</p>

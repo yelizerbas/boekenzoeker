@@ -446,10 +446,24 @@ form .hide + button:hover {
   font-size: 1.5em;
 }
 
-.knoppen {
+#like {
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+}
+#like svg {
+  height: 30px;
+  color: #F21B3F;
+  -webkit-transition: 250ms ease-in;
+  -moz-transition: 250ms ease-in;
+  -ms-transition: 250ms ease-in;
+  -o-transition: 250ms ease-in;
+  transition: 250ms ease-in;
+}
+#like svg:hover {
+  color: #327684;
 }
 
 .error {
