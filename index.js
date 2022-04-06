@@ -237,7 +237,7 @@ app.post("/like", async (req, res) => {
 
 app.post("/dislike", async (req, res) => {
 try {
-    await books.findOneAndUpdate({titel: req.body.dislike}, { likedBooks: "" }).lean().exec();
+    await books.findOneAndUpdate({titel: req.body.dislike}, { likedBooks: "dislike" }).lean().exec();
     
     res.redirect("like");
 } catch {
