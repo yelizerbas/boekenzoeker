@@ -1,4 +1,4 @@
-.error{
+.error404 {
     background-color: $white;
     box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
     max-width: 30em;
@@ -7,29 +7,21 @@
     border-radius: 2em;
     display: block;
    
-
-    h2{
+    h2 {
         margin-bottom: .5em;
     }
 
-    p{
+    p {
         margin-bottom: 2em;
-
     }
 
-    
-
-    
-    ul{
-        @include display-flex;
+    ul {
+        @include display-flex; 
         margin-top: -1em;
     }
 
-    li{
+    li {
         list-style: none;
         margin-bottom: .5em;
     }
-
-
-
 }
