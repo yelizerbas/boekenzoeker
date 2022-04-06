@@ -70,7 +70,7 @@
             background-color: $white;
             box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
             max-width: 100%;
-            padding: 3em 2.5em;
+            padding: 3em 2.5em 1em 3em;
             border-radius: 2em;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -104,6 +104,14 @@
 
             p:last-of-type {
                 margin-top: 1em;
+            }
+
+            form {
+                all: initial;
+
+                input {
+                    margin-top: 10px;
+                }
             }
 
         }
