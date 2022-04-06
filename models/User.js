@@ -24,9 +24,7 @@ const userSchema = new mongoose.Schema({
         default: Date.now,
     },
 
-    likedBooks: {
-        type: Array,
-    }
+    
 })
 
 const User = mongoose.model('User', userSchema)
