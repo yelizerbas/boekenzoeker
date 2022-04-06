@@ -397,6 +397,11 @@ form .hide + button:hover {
   position: relative;
   padding-left: 70px;
 }
+#filter section:first-of-type form #errorFilteren {
+  margin-bottom: 1em;
+  font-family: dunbar-tall, sans-serif;
+  color: #F21B3F;
+}
 #filter section:first-of-type form input {
   display: inline-block;
   width: 20px;
@@ -438,12 +443,30 @@ form .hide + button:hover {
   border-radius: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 #filter section:last-of-type section img {
   width: 200px;
 }
 #filter section:last-of-type section h2 {
   font-size: 1.5em;
+}
+#filter section:last-of-type section h3 {
+  margin: 0.2em 0;
+  font-family: dunbar-tall, sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #F21B3F;
+}
+#filter section:last-of-type section p:first-of-type, #filter section:last-of-type section p:nth-of-type(2) {
+  color: #327684;
+  display: inline-block;
+}
+#filter section:last-of-type section p:nth-of-type(2) {
+  margin-left: 2em;
+}
+#filter section:last-of-type section p:last-of-type {
+  margin-top: 1em;
 }
 
 .error {
