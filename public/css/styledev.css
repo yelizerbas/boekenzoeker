@@ -439,7 +439,7 @@ form .hide + button:hover {
   background-color: #FFFFFF;
   box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
   max-width: 100%;
-  padding: 3em 2.5em;
+  padding: 3em 2.5em 1em 3em;
   border-radius: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -468,6 +468,12 @@ form .hide + button:hover {
 }
 #filter section:last-of-type section p:last-of-type {
   margin-top: 1em;
+}
+#filter section:last-of-type section form {
+  all: initial;
+}
+#filter section:last-of-type section form input {
+  margin-top: 10px;
 }
 
 .ontzichtbaar {
@@ -526,7 +532,7 @@ form .hide + button:hover {
   padding: 20px 0;
   text-align: center;
 }
-#like h1 section {
+#like section {
   max-width: calc(75% - 1em);
   padding: 0 70px 170px 0;
   display: grid;
@@ -534,43 +540,49 @@ form .hide + button:hover {
   column-gap: 1em;
   row-gap: 1em;
 }
-#like h1 section section {
+#like section section {
   background-color: #FFFFFF;
   box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
   max-width: 100%;
-  padding: 3em 2.5em;
+  padding: 3em 2.5em 1em 2.5em;
   border-radius: 2em;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
-#like h1 section section img {
+#like section section img {
   width: 200px;
 }
-#like h1 section section h2 {
+#like section section h2 {
   font-size: 1.5em;
 }
-#like h1 section section h3 {
+#like section section h3 {
   margin: 0.2em 0;
   font-family: dunbar-tall, sans-serif;
   font-size: 1em;
   font-weight: 400;
   color: #F21B3F;
 }
-#like h1 section section p:first-of-type,
-#like h1 section section p:nth-of-type(2) {
+#like section section p:first-of-type,
+#like section section p:nth-of-type(2) {
   color: #327684;
   display: inline-block;
 }
-#like h1 section section p:nth-of-type(2) {
+#like section section p:nth-of-type(2) {
   margin-left: 2em;
 }
-#like h1 section section p:last-of-type {
+#like section section p:last-of-type {
   margin-top: 1em;
+}
+#like section section form {
+  all: initial;
+}
+#like section section form input {
+  margin-top: 10px;
 }
 
 .ontzichtbaar {
-  display: hidden;
+  display: none;
 }
 
 /*# sourceMappingURL=styledev.css.map */
