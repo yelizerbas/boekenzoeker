@@ -3,33 +3,6 @@ Met onze applicatie kun je boeken zoeken die jij leuk vindt. Het is natuurlijk e
 
 <img width="678" alt="Schermafbeelding 2022-04-01 om 13 41 21" src="https://user-images.githubusercontent.com/94406320/161256622-33d8bcef-0c57-47d6-80d0-0b26b7184f92.png">
 
-# Commit messages
-* 🔥 code of bestanden verwijderen.
-
-* 🐛 een bug repareren.
-
-* ✨ introduceer nieuwe functies.
-
-* 📝 documentatie toevoegen of bijwerken.
-
-* 💄 de gebruikersinterface en stijlbestanden toevoegen of bijwerken.
-
-* 🎉 begin een project.
-
-* ✅ code toevoegen of bijwerken.
-
-* 🚨 compiler / linter-waarschuwingen repareren.
-
-* 🚧 werk in uitvoering.
-
-* 🙈 een .gitignore-bestand toevoegen of bijwerken.
-
-* 📦️ gecompileerde bestanden of pakketten toevoegen of bijwerken.
-
-* 🚚 verplaatsen of hernoemen van bronnen.
-
-* 🍱 middelen toevoegen of bijwerken.
-
 # ⚙️ Instalatie 
 Om ons project te kunnen gebruiken moet je het installeren. Voor het installeren van Bookbuddy heb moet je eerst een clone maken van deze repo. Dit doe je door in de terminal het volgende te typen:
 ```
