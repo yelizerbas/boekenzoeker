@@ -1,28 +1,31 @@
+<main id="filter">
 
- <h1>Favorieten</h1>
+    <h1>Favorieten</h1>
 
     <section>
         {{#each data}}
-            <section>
-                <img src={{this.imgSrc}} alt="foto van boek"/>
-                <article>
-                    <h2>{{this.titel}}</h2>
-                    <h3>{{this.auteur}}</h3>
-                    <p>{{this.genre}}</p>
-                    <p>{{this.taal}}</p>
-                    <p>{{this.samenvatting}}</p>
-                    <input class="ontzichtbaar" name="dislike" type="'hidden" value="{{this.titel}}" />
-                    <form action="/dislike" method="POST">
-                
-                <input type="submit" value="DISLIKE" >
-                </form>
-                </article>
+        <section>
+            <img src={{this.imgSrc}} alt="foto van boek" />
+            <article>
+                <h2>{{this.titel}}</h2>
+                <h3>{{this.auteur}}</h3>
+                <p>{{this.genre}}</p>
+                <p>{{this.taal}}</p>
+                <p>{{this.samenvatting}}</p>
+                <input class="ontzichtbaar" name="dislike" type="'hidden" value="{{this.titel}}" />
+                <form action="/dislike" method="POST">
 
-                
-            </section>
+                    <input type="submit" value="DISLIKE">
+                </form>
+            </article>
+
+
+        </section>
         {{/each}}
     </section>
 
 </main>
+
+
 
 {{>footer}}

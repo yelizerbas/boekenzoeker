@@ -1,18 +1,18 @@
 <main id="filter">
     <h1>Filteren</h1>
     <section>
-        <form id="filter" action="/formulier", method="POST">
-        <h3 id="errorFilteren"></h3>
-            <input type="radio" name="genre" value="Thriller" id="thriller" required>
+        <form class="filtreren" id="filter" action="/formulier" , method="POST">
+            <h3 id="errorFilteren"></h3>
+            <input class="radio" type="radio" name="genre" value="Thriller" id="thriller" required>
             <label for="thriller"> Thriller</label>
 
-            <input type="radio" name="genre" value="Mystery" id="mystery">
+            <input class="radio" type="radio" name="genre" value="Mystery" id="mystery">
             <label for="mystery"> Mystery</label>
 
-            <input type="radio" name="genre" value="Young Adult" id="young-adult">
+            <input class="radio" type="radio" name="genre" value="Young Adult" id="young-adult">
             <label for="young-adult"> Young Adult</label>
-        
-            <input type="radio" name="genre" value="Romance" id="romance">
+
+            <input class="radio" type="radio" name="genre" value="Romance" id="romance">
             <label for="romance"> Romance</label>
 
             <button type="submit"> Filter</button>
@@ -21,26 +21,26 @@
 
     <section>
         {{#each data}}
-            <section>
-                <img src={{this.imgSrc}} alt="foto van boek"/>
-                <article>
-                    <h2>{{this.titel}}</h2>
-                    <h3>{{this.auteur}}</h3>
-                    <p>{{this.genre}}</p>
-                    <p>{{this.taal}}</p>
-                    <p>{{this.samenvatting}}</p>
+        <section>
+            <img src={{this.imgSrc}} alt="foto van boek" />
+            <article>
+                <h2>{{this.titel}}</h2>
+                <h3>{{this.auteur}}</h3>
+                <p>{{this.genre}}</p>
+                <p>{{this.taal}}</p>
+                <p>{{this.samenvatting}}</p>
 
-                    <form action="/like" method="POST">
-                 <input class="ontzichtbaar" name="like" type="'hidden" value="{{this.titel}}" />
-                <input type="submit" value="LIKE" >
+                <form action="/like" method="POST">
+                    <input class="ontzichtbaar" name="like" type="'hidden" value="{{this.titel}}" />
+                    <input type="submit" value="LIKE">
                 </form>
-                </article>
+            </article>
 
-                
-            </section>
+
+        </section>
         {{/each}}
     </section>
 
 </main>
 
- {{>footer}}   
+{{>footer}}

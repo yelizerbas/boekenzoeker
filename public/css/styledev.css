@@ -397,12 +397,12 @@ form .hide + button:hover {
   position: relative;
   padding-left: 70px;
 }
-#filter section:first-of-type form #errorFilteren {
+#filter section:first-of-type .filtreren #errorFilteren {
   margin-bottom: 1em;
   font-family: dunbar-tall, sans-serif;
   color: #F21B3F;
 }
-#filter section:first-of-type form input {
+#filter section:first-of-type .filtreren .radio {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -410,21 +410,21 @@ form .hide + button:hover {
   border-radius: 20px;
   appearance: none;
 }
-#filter section:first-of-type form input:checked {
+#filter section:first-of-type .filtreren .radio:checked {
   background-color: #08BDBD;
 }
-#filter section:first-of-type form input:hover {
+#filter section:first-of-type .filtreren .radio:hover {
   cursor: pointer;
 }
-#filter section:first-of-type form label {
+#filter section:first-of-type .filtreren label {
   display: inline-block;
   width: 85%;
   margin: 0 0 1.2em 5px;
 }
-#filter section:first-of-type form label:hover {
+#filter section:first-of-type .filtreren label:hover {
   cursor: pointer;
 }
-#filter section:first-of-type form button {
+#filter section:first-of-type .filtreren button {
   margin-top: 1.5em;
 }
 #filter section:last-of-type {
@@ -458,7 +458,8 @@ form .hide + button:hover {
   font-weight: 400;
   color: #F21B3F;
 }
-#filter section:last-of-type section p:first-of-type, #filter section:last-of-type section p:nth-of-type(2) {
+#filter section:last-of-type section p:first-of-type,
+#filter section:last-of-type section p:nth-of-type(2) {
   color: #327684;
   display: inline-block;
 }
@@ -467,6 +468,10 @@ form .hide + button:hover {
 }
 #filter section:last-of-type section p:last-of-type {
   margin-top: 1em;
+}
+
+.ontzichtbaar {
+  display: none;
 }
 
 .error404 {
@@ -493,6 +498,79 @@ form .hide + button:hover {
 .error404 li {
   list-style: none;
   margin-bottom: 0.5em;
+}
+
+#like {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+  -ms-flex-pack: space-around;
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  -ms-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  max-width: 100%;
+}
+#like h1 {
+  display: block;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+}
+#like h1 section {
+  max-width: calc(75% - 1em);
+  padding: 0 70px 170px 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  column-gap: 1em;
+  row-gap: 1em;
+}
+#like h1 section section {
+  background-color: #FFFFFF;
+  box-shadow: 0 0 40px rgba(26, 26, 26, 0.12);
+  max-width: 100%;
+  padding: 3em 2.5em;
+  border-radius: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+#like h1 section section img {
+  width: 200px;
+}
+#like h1 section section h2 {
+  font-size: 1.5em;
+}
+#like h1 section section h3 {
+  margin: 0.2em 0;
+  font-family: dunbar-tall, sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #F21B3F;
+}
+#like h1 section section p:first-of-type,
+#like h1 section section p:nth-of-type(2) {
+  color: #327684;
+  display: inline-block;
+}
+#like h1 section section p:nth-of-type(2) {
+  margin-left: 2em;
+}
+#like h1 section section p:last-of-type {
+  margin-top: 1em;
+}
+
+.ontzichtbaar {
+  display: hidden;
 }
 
 /*# sourceMappingURL=styledev.css.map */
