@@ -186,6 +186,20 @@ app.post("/", (req, res) => {
   res.redirect('/login');
 });
 
+//LIKE
+
+app.post("/like", (req, res) => {
+  User.findOneAndUpdate({ name: req.user.name }, { $push: { likedBooks : ["1"] } }  , (err, data) => {
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log('boek geliked');
+    }
+});
+res.redirect('/');
+});
+
 // FILTEREN
 app.get('/', async (req, res) => {
   if ( !req.isAuthenticated() ) {
