@@ -272,15 +272,26 @@ app.get('/like', async (req, res) => {
 
 app.post('/like', async (req, res) => {
 
-  books.updateOne({ titel: req.body.titel}), (err, data) => {
+  books.findOneAndUpdate({ titel: this.titel }, { likedBooks: "1" } , (err, data) => {
     if(err) {
       console.log(err);
     }
-
     else {
-      return boeken.likedBooks;
+      console.log('boek geliked!');
+      return books.likedBooks;
     }
-  }
+  })
+})
+
+  // books.updateOne({ titel: req.body.titel}), (err, data) => {
+  //   if(err) {
+  //     console.log(err);
+  //   }
+
+  //   else {
+  //     return boeken.likedBooks;
+  //   }
+
 
   // books.updateOne({ titel: req.body.titel },).then(boeken => {
   //   console.log(req.body.titel)
@@ -288,7 +299,6 @@ app.post('/like', async (req, res) => {
   //   return boeken.likedBooks;
   // }) 
 
-})
 
 
 // app.post('/favorites/:id', function (req, res) {
